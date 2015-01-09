@@ -1,0 +1,60 @@
+.track-frame {
+    max-width: 500px;
+    height: 500px;
+    position: relative;
+}
+
+.artwork {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+}
+
+/*********************
+
+ * Progress Styling
+ * http://www.useragentman.com/blog/2012/01/03/cross-browser-html5-progress-bars-in-depth/
+
+ *********************/
+
+
+.track-frame progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+}
+
+.track-frame progress {
+    color: black;
+}
+
+/* These have to be separate because of firefox and opera :( */
+.track-frame progress::-moz-progress-bar { 
+    background: black;  
+}
+
+.track-frame progress::-webkit-progress-value {
+    background: black;
+}
+
+.track-frame progress[aria-valuenow]:before  {
+    background: black;
+}
+
+.track-frame progress,                          
+.track-frame progress[role][aria-valuenow] {
+   background: rgba(0, 0, 0, 0.2) !important; /* !important is needed by the polyfill */
+}
+
+.track-frame progress::-webkit-progress-bar {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 400px) {
+    .track-frame {
+        height: 400px;
+    }
+}
+
