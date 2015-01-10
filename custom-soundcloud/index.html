@@ -2,26 +2,15 @@
 <html ng-app="customPlayer">
 <head>
     <title>Soundcloud Player</title>
+    
+    <!-- Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <!-- Style -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/progress-polyfill.css">
+    <link rel="stylesheet" href="css/spinkit.css">
     <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-    <div class="plangular" plangular="https://soundcloud.com/erasedtapes/nils-frahm-peter-clark-remix">
-        <span ng-if="!track">Loading...</span>
-        <div class="track-frame" ng-click="playPause()" ng-if="track">
-            <div class="artwork" ng-style="{ 'background-image': 'url(' + track.artwork_url.replace('large', 't500x500') + ')'}"></div>
-            <!-- <img class="artwork" ng-src="{{ track.artwork_url.replace('large', 't500x500')  }}" alt="{{ track.title }}" /> -->
-
-            <p>
-                <button ng-click="playPause()">Play/Pause</button>
-                {{ track.user.username }} - {{ track.title }}
-            </p>
-            <progress value="{{ currentTime / duration || 0 }}" ng-click="seek($event)">{{ currentTime / duration }}</progress>
-            
-        </div>
-    </div>
 
     <!-- scripts -->
     <script src="js/progress-polyfill.min.js"></script>
@@ -32,6 +21,49 @@
     <script>
         var app = angular.module('customPlayer', ['ngAnimate', 'plangular']);
     </script>
+</head>
+
+<body>
+    <div class="plangular" plangular="https://soundcloud.com/erasedtapes/nils-frahm-peter-clark-remix">
+        
+
+
+        <!-- The player -->
+        <div class="track-frame" ng-if="track">
+            <div class="play-pause">
+                <svg plangular-icon="play" ng-if="player.playing != track"></svg>
+                <svg plangular-icon="pause" ng-if="player.playing == track"></svg>
+            </div>
+            <img class="artwork" ng-click="playPause()" ng-src="{{ track.artwork_url.replace('large', 't500x500') }}"></img>
+
+            <div class="controls">
+                <span class="play" ng-click="play()" ng-if="player.playing != track">
+                    <svg plangular-icon="play"></svg>
+                </span>
+                <span class="pause" ng-click="pause()" ng-if="player.playing == track">
+                    <svg plangular-icon="pause"></svg>
+                </span>
+                <!-- {{ track.user.username }} - {{ track.title }} -->
+            </div>
+            <progress value="{{ currentTime / duration || 0 }}" ng-click="seek($event)">
+                {{ currentTime / duration }}
+            </progress>
+            <div class="overlay"></div>
+        </div>
+
+
+        <!-- Loading -->
+        <div class="loading" ng-if="!track">
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>

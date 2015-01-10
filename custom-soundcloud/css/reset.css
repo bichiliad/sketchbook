@@ -75,3 +75,20 @@ progress[role]:after {
 progress[role] strong {
     display: none;
 }
+
+
+/*********************
+
+ * Remove img border
+ * http://stackoverflow.com/q/4743127/444912
+ * http://stackoverflow.com/q/13522532/444912 
+
+ *********************/
+
+img {
+    /*content: '';*/
+}
+
+img:-moz-loading {
+    visibility: hidden;
+}
