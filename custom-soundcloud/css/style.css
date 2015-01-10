@@ -28,6 +28,7 @@ html {
 
 .plangular {
     overflow: hidden;
+    margin: 50px auto ;
 }
 
 .artwork {
@@ -75,16 +76,17 @@ html {
 
  *********************/
 
-.track-frame:hover .artwork         { opacity: 0.5; }
+.track-frame:hover .artwork         { opacity: 0.3; }
 .track-frame:hover .play-pause      { opacity: 1; }
 .track-frame:hover .play-pause svg  { height: 120px; margin: -60px; }
 .track-frame:hover .controls        { opacity: 0; bottom: 40px;}
 .track-frame:hover progress         { opacity: 0.8; height: 20px; }
+.track-frame:hover .track-info      { opacity: 1; }
 
 
 /*********************
 
- * Hover animations
+ * Angular transitions
 
  *********************/
 
@@ -129,7 +131,7 @@ html {
     box-sizing: border-box;
     position: absolute;
     width: 100%;
-    bottom: 25px;
+    bottom: 30px;
     padding: 0 30px;
 
     -webkit-transition: opacity 0.3s, bottom 0.3s;
@@ -144,6 +146,57 @@ html {
     width: 2em;
     display: inline-block;
  }
+
+ /*********************
+
+ * Track Info
+
+ *********************/
+
+.track-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    box-sizing: border-box;
+    padding: 30px;
+    opacity: 0;
+
+    -webkit-transition: opacity 0.3s;
+       -moz-transition: opacity 0.3s;
+        -ms-transition: opacity 0.3s;
+         -o-transition: opacity 0.3s;
+            transition: opacity 0.3s;
+}
+
+.track-info .track-title {
+    font-size: 2em;
+    margin-bottom: .5em;
+}
+
+.track-info .track-username {
+    font-size: 1em;
+    margin-bottom: .2em;
+
+}
+
+.track-info a {
+    text-transform: uppercase;
+    font-size: .8em;
+    bottom: 30px;
+    right: 30px;
+}
+
+.track-info a,
+.track-info a:visited,
+.track-info a:active {
+    color: black;
+}
+
+.track-info a:hover {
+    color: #333;
+}
 
 
 /*********************

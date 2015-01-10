@@ -24,12 +24,12 @@
 </head>
 
 <body>
-    <div class="plangular" plangular="https://soundcloud.com/erasedtapes/nils-frahm-peter-clark-remix">
+    <div class="plangular" plangular="https://soundcloud.com/ghostly/lusine-forks-1">
         
 
 
         <!-- The player -->
-        <div class="track-frame" ng-if="track">
+        <div class="track-frame" ng-if="track"> 
             <div class="play-pause">
                 <svg plangular-icon="play" ng-if="player.playing != track"></svg>
                 <svg plangular-icon="pause" ng-if="player.playing == track"></svg>
@@ -48,7 +48,11 @@
             <progress value="{{ currentTime / duration || 0 }}" ng-click="seek($event)">
                 {{ currentTime / duration }}
             </progress>
-            <div class="overlay"></div>
+            <div class="track-info">
+                <div class="track-username">{{ track.user.username }}</div>
+                <div class="track-title">{{ track.title }}</div>
+                <a ng-href="{{ track.permalink_url}}">Listen on Soundcloud</a>
+            </div>
         </div>
 
 
