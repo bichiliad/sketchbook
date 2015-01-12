@@ -36,7 +36,7 @@
         <div class="plangular" plangular="https://soundcloud.com/ghostly/lusine-forks-1">
 
             <!-- The player -->
-            <div class="track-frame" ng-if="false"> 
+            <div class="track-frame" ng-if="track"> 
                 <div class="play-pause">
                     <svg plangular-icon="play" ng-if="player.playing != track"></svg>
                     <svg plangular-icon="pause" ng-if="player.playing == track"></svg>
@@ -64,7 +64,7 @@
 
 
             <!-- Loading -->
-            <div class="loading" ng-if="!false">
+            <div class="loading" ng-if="!track">
                 <div class="spinner">
                     <div class="rect1"></div>
                     <div class="rect2"></div>
