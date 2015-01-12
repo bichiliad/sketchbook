@@ -21,6 +21,13 @@
 
     <script>
         var app = angular.module('customPlayer', ['ngAnimate', 'plangular']);
+
+        window.onload = function() {
+            BackgroundCheck.init({
+                targets: '.check',
+                images: '.artwork'
+            });
+        };
     </script>
 </head>
 
@@ -156,17 +163,6 @@
         </div><!-- /.loading --> 
 
     </div><!-- /.plangular --> 
-
-
-
-    <script>
-        window.onload = function() {
-            BackgroundCheck.init({
-                targets: '.check',
-                images: '.artwork'
-            });
-        };
-    </script>
 
 </body>
 

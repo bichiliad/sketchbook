@@ -279,17 +279,6 @@ html {
     background: rgba(255, 255, 255, 0.8);
 }
 
-/* Loading bar background when we're hovering over the player */
-
-/*.track-frame:hover progress.background--dark, 
-.track-frame:hover progress.background--dark[role][aria-valuenow] {
-    background: none;
-}
-
-.track-frame:hover progress.background--dark::-webkit-progress-bar {
-    background: none;
-}*/
-
 /*********************
 
  * Stuff for smaller screens
