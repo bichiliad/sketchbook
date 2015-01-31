@@ -33,6 +33,7 @@ body {
             width: 100%;
             text-align: justify;
             text-transform: lowercase;
+            position: relative;
 
             &.hideme {
                 // height: 0%;
@@ -48,6 +49,7 @@ body {
             }
 
             &.divider img, &.design img {
+                position: absolute;
                 width: 100%;
                 height: 100%;
             }

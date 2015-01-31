@@ -186,6 +186,7 @@ body .content section {
   width: 100%;
   text-align: justify;
   text-transform: lowercase;
+  position: relative;
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
@@ -215,28 +216,29 @@ body .content section {
 
          *************************/
 }
-/* line 37, ../sass/_scrolling.scss */
+/* line 38, ../sass/_scrolling.scss */
 body .content section.hideme {
   display: none;
 }
-/* line 41, ../sass/_scrolling.scss */
+/* line 42, ../sass/_scrolling.scss */
 body .content section.hideme.header {
   display: block;
 }
-/* line 46, ../sass/_scrolling.scss */
+/* line 47, ../sass/_scrolling.scss */
 body .content section .inside {
   display: none;
 }
-/* line 50, ../sass/_scrolling.scss */
+/* line 51, ../sass/_scrolling.scss */
 body .content section.divider img, body .content section.design img {
+  position: absolute;
   width: 100%;
   height: 100%;
 }
-/* line 67, ../sass/_scrolling.scss */
+/* line 69, ../sass/_scrolling.scss */
 body .content section.intro .inside {
   color: black;
 }
-/* line 73, ../sass/_scrolling.scss */
+/* line 75, ../sass/_scrolling.scss */
 body .content section.video .video-cover {
   background-image: url("graphics/video.png");
   -moz-background-size: 100% 100%;
@@ -249,11 +251,11 @@ body .content section.video .video-cover {
   left: 0;
   right: 0;
 }
-/* line 83, ../sass/_scrolling.scss */
+/* line 85, ../sass/_scrolling.scss */
 body .content section.video iframe {
   display: none;
 }
-/* line 96, ../sass/_scrolling.scss */
+/* line 98, ../sass/_scrolling.scss */
 body .content section.active .inside {
   display: block;
   -moz-transform: scale3d(1, 1, 1);
@@ -262,7 +264,7 @@ body .content section.active .inside {
   transform: scale3d(1, 1, 1);
   /* 75 / 75 */
 }
-/* line 104, ../sass/_scrolling.scss */
+/* line 106, ../sass/_scrolling.scss */
 body .content section.second-class .inside {
   display: block;
   -moz-transform: scale3d(1, 0.06, 1);
@@ -271,7 +273,7 @@ body .content section.second-class .inside {
   transform: scale3d(1, 0.06, 1);
   /* 4.5 / 75 */
 }
-/* line 119, ../sass/_scrolling.scss */
+/* line 121, ../sass/_scrolling.scss */
 body .content section .inside {
   -webkit-transform-origin: 0 0;
   /* Keep text aligned properly */
