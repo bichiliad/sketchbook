@@ -184,7 +184,7 @@
 }
 
 .track-info .track-title {
-    font-size: 2em;
+    font-size: 1.6em;
     margin-bottom: .5em;
 }
 
@@ -196,7 +196,7 @@
 
 .track-info a {
     text-transform: uppercase;
-    font-size: .8em;
+    font-size: .7em;
     bottom: 30px;
     right: 30px;
 }
