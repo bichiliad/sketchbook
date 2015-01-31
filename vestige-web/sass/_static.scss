@@ -1,0 +1,74 @@
+body.teaser.static {
+    height: auto !important;
+    
+    .content {
+        position: relative !important;
+    
+        section {
+            height: 4em;
+            
+            .inside {
+                display: block;
+                @include transform(none);
+            }
+
+            &.header {
+                height: 4em;
+                
+                &.vestige {
+                    height: 20em;
+                }
+                
+                &.tagline {
+                    height:.5em;
+                    display: none;
+                }
+                
+                &.tickets {
+                    height: 8em;
+                }
+                
+                &.logistics {
+                    height: 12em;
+                }
+                
+                &.aboutText {
+                    height: 12em;
+                }
+                
+                &.sponsors {
+                    height: 8em;
+                }
+            }
+            
+            &.video {
+                height: 12em;
+            }
+            
+            &.divider {
+                height: 2em;
+                @include background-size(150% 150%);
+                background-position: 25% 25%;
+
+                &:nth-child(4n+1) {
+                    height: 1em;
+                }
+                
+                &:nth-child(odd) {
+                    height: 2em;
+                }
+                
+                &:nth-child(3n+2) {
+                    height: 3em;
+                }
+                &:nth-child(4n+2) {
+                    height: 5em;
+                }
+                
+                video {
+                    display: none;
+                }
+            }
+        }
+    }
+}

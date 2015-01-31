@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1">
+        <title>Lunar Gala: VESTIGE</title>
+        <link href="style/screen.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+        <script type="text/javascript" src="//f.vimeocdn.com/js/froogaloop2.min.js"></script>
+        <script type="text/javascript" src="scripts/client.js"></script>
+    </head>
+    <body class="index teaser">
+        <div class="content">
+            <section class="divider" style="background-image: url('style/graphics/video/eye.png')">
+                <video autoplay="autoplay" loop="loop" muted="muted" src="video/eye.mp4"></video>
+            </section>
+            <section class="header title vestige">
+                <div class="inside">
+                    <h1>Lunar Gala: VESTIGE</h1>
+                </div>
+            </section>
+            <section class="video">
+                <iframe src="http://player.vimeo.com/video/115355275?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff&amp;autoplay=0" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                <div class="video-cover"></div>
+            </section>
+            <section class="header tagline">
+                <div class="inside">
+                    <p>An exhibition of stimulation and saturation. The information high you crave.</p>
+                </div>
+            </section>
+            <section class="header tickets">
+                <div class="inside">
+                    <h1>Buy tickets online</h1>
+                    <p>Tickets also available at CUC Commons starting January 28.</p>
+                </div>
+                <a href="http://www.showclix.com/event/LunarGala2015" target="_blank"></a>
+            </section>
+            <section class="divider" style="background-image: url('style/graphics/video/paris.png')">
+                <video autoplay="autoplay" loop="loop" muted="muted" src="video/paris.mp4"></video>
+            </section>
+            <section class="divider" style="background-image: url('style/graphics/video/tongues.png')">
+                <video autoplay="autoplay" loop="loop" muted="muted" src="video/tongues.mp4"></video>
+            </section>
+            <section class="header logistics">
+                <div class="inside">
+                    <h1>2015/02/07</h1>
+                    <p>Wiegand Gym eight to ten PM</p>
+                </div>
+            </section>
+            <section class="divider" style="background-image: url('style/graphics/video/shopping.png')">
+                <video autoplay="autoplay" loop="loop" muted="muted" src="video/shopping.mp4"></video>
+            </section>
+            <section class="divider" style="background-image: url('style/graphics/video/makeup.png')">
+                <video autoplay="autoplay" loop="loop" muted="muted" src="video/makeup.mp4"></video>
+            </section>
+            <section class="header about">
+                <div class="inside">
+                    <h1>About</h1>
+                </div>
+            </section>
+            <section class="divider" style="background-image: url('style/graphics/video/cg.png')">
+                <video autoplay="autoplay" loop="loop" muted="muted" src="video/cg.mp4"></video>
+            </section>
+            <section class="header aboutText">
+                <div class="inside">
+                    <p>Student designers, models, dancers, and artists bring their skills together to produce Lunar Gala, Carnegie Mellon’s largest annual show. Lunar Gala brings together fashion design, dance and video art in a unique one-night event.</p>
+                </div>
+            </section>
+            <section class="header blog">
+                <div class="inside">
+                    <h1>Blog</h1>
+                </div>
+                <a href="https://lunargala.squarespace.com/blog/"></a>
+            </section>
+            <section class="divider" style="background-image: url('style/graphics/video/timelapse.png')">
+                <video autoplay="autoplay" loop="loop" muted="muted" src="video/timelapse.mp4"></video>
+            </section>
+            <section class="header sponsorsHeader">
+                <div class="inside">
+                    <h1>Sponsored by</h1>
+                </div>
+            </section>
+            <section class="header sponsors">
+                <div class="inside">
+                    <ul>
+                        <li>Alliance</li>
+                        <li>Constellation</li>
+                        <li>DYOB Entertainment</li>
+                        <li>DYOB Group</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="divider" style="background-image: url('style/graphics/video/90s.png')">
+                <video autoplay="autoplay" loop="loop" muted="muted" src="video/90s.mp4"></video>
+            </section>
+            <section class="divider" style="background-image: url('style/graphics/video/makeout.png')">
+                <video autoplay="autoplay" loop="loop" muted="muted" src="video/makeout.mp4"></video>
+            </section>
+            <section class="header logo">
+                <div class="inside">
+                    <h1>Lunar Gala</h1>
+                </div>
+            </section>
+          </div>
+    </body>
+</html>

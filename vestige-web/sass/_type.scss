@@ -1,0 +1,124 @@
+@font-face {
+    font-family:'ArialLol';
+    src: url('type/ArialLol/compressed-arial-mono.eot');
+    src: url('type/ArialLol/compressed-arial-mono.eot?#iefix') format('embedded-opentype'),
+        url('type/ArialLol/compressed-arial-mono.woff') format('woff'),
+        url('type/ArialLol/compressed-arial-mono.ttf') format('truetype'),
+        url('type/ArialLol/compressed-arial-mono.svg#compressed-arial-mono') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-201D;
+}
+
+@font-face {
+    font-family: 'arialLawlSmallBody';
+    src: url('type/arialLawl/ariallol1-webfont.eot');
+    src: url('type/arialLawl/ariallol1-webfont.eot?#iefix') format('embedded-opentype'),
+         url('type/arialLawl/ariallol1-webfont.woff2') format('woff2'),
+         url('type/arialLawl/ariallol1-webfont.woff') format('woff'),
+         url('type/arialLawl/ariallol1-webfont.ttf') format('truetype'),
+         url('type/arialLawl/ariallol1-webfont.svg#ariallol1regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'arialLawlHeader';
+    src: url('type/arialLawl/arial-lawl-header--webfont.eot');
+    src: url('type/arialLawl/arial-lawl-header--webfont.eot?#iefix') format('embedded-opentype'),
+         url('type/arialLawl/arial-lawl-header--webfont.woff2') format('woff2'),
+         url('type/arialLawl/arial-lawl-header--webfont.woff') format('woff'),
+         url('type/arialLawl/arial-lawl-header--webfont.ttf') format('truetype'),
+         url('type/arialLawl/arial-lawl-header--webfont.svg#arial_lawl_header_regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'arialLawlLargeBody';
+    src: url('type/arialLawl/arial-lawl-large-type-webfont.eot');
+    src: url('type/arialLawl/arial-lawl-large-type-webfont.eot?#iefix') format('embedded-opentype'),
+         url('type/arialLawl/arial-lawl-large-type-webfont.woff2') format('woff2'),
+         url('type/arialLawl/arial-lawl-large-type-webfont.woff') format('woff'),
+         url('type/arialLawl/arial-lawl-large-type-webfont.ttf') format('truetype'),
+         url('type/arialLawl/arial-lawl-large-type-webfont.svg#arial_lawl_large_typeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'arialLawlSubheader';
+    src: url('type/arialLawl/arial-lawl-subhead-webfont.eot');
+    src: url('type/arialLawl/arial-lawl-subhead-webfont.eot?#iefix') format('embedded-opentype'),
+         url('type/arialLawl/arial-lawl-subhead-webfont.woff2') format('woff2'),
+         url('type/arialLawl/arial-lawl-subhead-webfont.woff') format('woff'),
+         url('type/arialLawl/arial-lawl-subhead-webfont.ttf') format('truetype'),
+         url('type/arialLawl/arial-lawl-subhead-webfont.svg#arial_lawl_subheadregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@mixin smallBodyType {
+    font-family: arialLawlSmallBody;
+    font-size: 18pt;
+    letter-spacing: .0625em;
+}
+
+@mixin largeBodyType {
+    font-family: arialLawlLargeBody;
+    font-size: 18pt;
+}
+
+@mixin subHeaderType {
+    font-family: arialLawlSubheader;
+    font-size: 36pt;
+}
+
+@mixin headerType {
+    font-family: arialLawlHeader;
+    font-size: 72pt;
+    letter-spacing: .0625em;
+}
+
+body {
+    color: black; 
+    @include smallBodyType;
+    
+    h1 {
+        @include largeBodyType;
+    }
+    
+    .content {
+        
+        section {
+        
+            &.header {
+                
+                .inside {
+                    @include transform(none !important);
+                    
+                    h1 {
+                        font-size: 75vh;
+                        transform-origin: 0 0;
+                        -webkit-transform-origin: 0 0;
+                    }
+                }
+            }
+            
+            &.human {
+                color: white;
+                
+                h1 {
+                    @include headerType;
+                }
+                
+                h2, p {
+                    @include largeBodyType;
+                    display: block;
+                }
+            }
+        }
+    }
+}

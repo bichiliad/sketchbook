@@ -1,0 +1,129 @@
+/* Constants */
+
+$sections: 119;              // The number of scrolling sections
+$scroll-ratio: 5;            // How many full screen heights to scroll to advance a single slide
+
+
+body {
+    height: $sections * $scroll-ratio * 10vh;            /* To allow scrolling */
+    display: none;                                        /* Hide until loaded */
+
+    /*************************
+    
+     * Scroll control code
+    
+     *************************/
+    
+    .content { 
+        position: fixed;
+        width: 100%;
+        top: 0;
+        height: 100vh;
+    
+        /*************************
+    
+         * General section layout
+    
+         *************************/
+    
+         section {
+            overflow: hidden;
+            box-sizing: border-box;
+            position: relative;
+            width: 100%;
+            text-align: justify;
+            text-transform: lowercase;
+
+            &.hideme {
+                // height: 0%;
+                display: none;
+
+                &.header {
+                    display: block;
+                }
+            }
+
+            .inside {
+                display: none;
+            }
+
+            &.divider img, &.design img {
+                width: 100%;
+                height: 100%;
+            }
+            
+            @include transform(translate3d(0, 0, 0)); /* force hardware acceleration */
+            @include backface-visibility(hidden); /* other hacky speed-up tricks */
+            @include perspective(1000);
+    
+
+            /*************************
+    
+            * Specific section layout
+    
+            *************************/
+    
+            &.intro {
+                .inside {
+                    color: black;
+                }
+            }
+    
+            &.video {
+                .video-cover {
+                    background-image: url('graphics/video.png');
+                    @include background-size(100% 100%);
+                    position: absolute;
+                    top: 0;
+                    bottom: 0; 
+                    left: 0; 
+                    right: 0;
+                }
+    
+                iframe {
+                    display: none;
+                }
+            }
+    
+            /*************************
+    
+            * Section sizing
+    
+            *************************/    
+    
+            &.active {
+    
+                .inside {
+                    display: block;
+                    @include transform(scale3d(1.0, 1.0, 1.0));         /* 75 / 75 */
+                }
+            }   
+    
+            &.second-class {
+    
+                .inside {
+                    display: block;
+                    @include transform(scale3d(1.0, 0.06, 1.0));        /* 4.5 / 75 */
+                }
+            }
+    
+    
+            /*************************
+    
+             * Edge case layouts
+             * (only one first-child, etc.)
+    
+             *************************/
+    
+    
+            .inside {
+                -webkit-transform-origin: 0 0; /* Keep text aligned properly */
+                        transform-origin: 0 0;
+                -webkit-transition: -webkit-transform $transitionDuration $transitionCurve;
+                        transition: transform $transitionDuration -webkit-transform $transitionDuration $transitionCurve;
+                // @include transition(transform $transitionDuration -webkit-transform $transitionDuration);
+                @include transform(scaleY(0.001824561)); /* .136742195 / 75 */
+            }
+        }
+    }
+}

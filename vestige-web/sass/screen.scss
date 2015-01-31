@@ -1,0 +1,168 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "_globals.scss";
+@import "_type.scss";
+@import "_animation.scss";
+@import "_scrolling.scss";
+@import "_static.scss";
+@import "_teaser.scss";
+@import "_humans.scss";
+
+$defaultBrightness: 1.1;
+
+body {
+    text-rendering:         optimizeLegibility;
+    -webkit-touch-callout:  none;
+    
+    ::selection {
+        background: #ff00ff;
+    }
+    
+    .content {
+        
+        section {
+            cursor: pointer;
+            @include transition(all $transitionDuration $transitionCurve);
+            
+            &.active {
+                cursor: default;
+            }
+            
+            &.header, &.text {
+                @include background-size(100% 100%);
+                background-repeat: no-repeat;
+                
+                .inside {
+                    text-indent: -99999em;
+                }
+            }
+            
+            &.header {            
+                &.title {
+                    background-image: url('graphics/vestige.png');
+                }
+
+                &.tickets {
+                    background-image: url('graphics/tickets.png');
+                    
+                    &:hover {
+                        opacity: .75;
+                    }
+                    
+                    &.active, &.second-class {
+                        
+                        a {
+                            display: block;
+                            height: 100%;
+                            width: 100%;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                        }
+                    }
+                }
+                
+                &.people {
+                    background-image: url('graphics/people.png');
+                }
+
+                &.about {
+                    background-image: url('graphics/about.png');
+                }
+                
+                &.sponsors {
+                    background-image: url('graphics/sponsors.png');
+                }
+                
+                &.logo {
+                    background-image: url('graphics/lg.png');
+                }
+
+                &.blog {
+                    background-image: url('graphics/blog.png');
+                }
+
+                &.designs { 
+                    background-image: url('graphics/designs.png');
+                }
+            }
+            
+            &.text { // like header, but doesn't stay visible when you scroll away
+                &.about {
+                    background-image: url('graphics/aboutText.png');
+                }
+                
+                &.tagline {
+                    background-image: url('graphics/tagline.png');
+                }
+                
+                &.sponsors {
+                    background-image: url('graphics/sponsors/allSponsors.jpg');
+                }
+                
+                &.logistics {
+                    background-image: url('graphics/logistics.png');
+                }
+            }
+            
+            &.divider {
+                @include background-size(100% 100%);
+
+                video {
+                    width: 100%;
+                    height: 100%;
+                    @include transform(scale3d(200.0, 1.0, 1.0));
+                    @include transition($transitionDuration $transitionCurve);
+                    @include transition-property(transform, -webkit-transform, -moz-transform);
+
+                    @media screen and (max-aspect-ratio: 16/9) {
+                        width: auto;                        
+                        height: 100%;
+                    }
+                    
+                    
+                    @media screen and (max-width: 48em) {
+                        display: none;
+                    }
+                }
+                
+                &.active {
+                    video {
+                        @include transform(scale3d(8.0, 1.0, 1.0));
+                        
+                        @media screen and (max-aspect-ratio: 16/9) {
+                            @include transform(scale3d(4.0, 1.0, 1.0));
+                        }
+                    }
+                }
+                
+                &.second-class {
+                    video {
+                        @include transform(scale3d(20.0, 1.0, 1.0));
+                    }
+                }
+            }
+            
+            // &.human {
+            //     -webkit-filter: brightness($defaultBrightness);
+            // 
+            //     &.active {
+            //         -webkit-filter: brightness($defaultBrightness);
+            //         // -webkit-animation: sectionPulse 2s infinite;
+            // 
+            //         &:hover, &:active {
+            //             -webkit-filter: brightness($defaultBrightness);
+            //         }
+            //     }
+            //     
+            //     &:hover {
+            //         -webkit-filter: brightness(1.5);
+            //     }     
+            //     
+            //     &:active {
+            //         -webkit-filter: brightness(3);
+            //     }           
+            // }
+        }
+    }
+}
