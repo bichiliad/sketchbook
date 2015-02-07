@@ -7,8 +7,15 @@
 @import "_static.scss";
 @import "_teaser.scss";
 @import "_humans.scss";
+@import "_collections.scss";
 
 $defaultBrightness: 1.1;
+
+@mixin sectionFlicker {
+    -webkit-animation: sectionPulse .001s linear infinite;
+       -moz-animation: sectionPulse .001s linear infinite;
+            animation: sectionPulse .001s linear infinite;
+}
 
 body {
     text-rendering:         optimizeLegibility;
@@ -36,30 +43,62 @@ body {
                     text-indent: -99999em;
                 }
             }
+
+            &.tickets, &.blog {
+    
+                    &.active:hover {
+                        @include sectionFlicker;
+                    }
+                    
+                    a {
+                        display: block;
+                        height: 100%;
+                        width: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                    }
+            }
             
-            &.header {            
+            &.video {
+                .video-cover {
+                    background-image: url('graphics/video.jpg');
+                    @include background-size(100% 100%);
+                    position: absolute;
+                    top: 0;
+                    bottom: 0; 
+                    left: 0; 
+                    cursor: pointer;
+                    right: 0;
+                    
+                    &:hover {
+                        @include sectionFlicker;
+                    }
+                }
+    
+                iframe {
+                    display: none;
+                }
+            }
+            
+            &.header {
+                
+                &:hover {
+                    @include sectionFlicker;
+                    
+                    &.active {
+                        -webkit-animation: none;
+                           -moz-animation: none;
+                                animation: none;
+                    }
+                }
+                        
                 &.title {
                     background-image: url('graphics/vestige.png');
                 }
 
                 &.tickets {
                     background-image: url('graphics/tickets.png');
-                    
-                    &:hover {
-                        opacity: .75;
-                    }
-                    
-                    &.active, &.second-class {
-                        
-                        a {
-                            display: block;
-                            height: 100%;
-                            width: 100%;
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                        }
-                    }
                 }
                 
                 &.people {
@@ -69,25 +108,16 @@ body {
                 &.about {
                     background-image: url('graphics/about.png');
                 }
-                
-                &.sponsors {
-                    background-image: url('graphics/sponsors.png');
-                }
-                
-                &.logo {
-                    background-image: url('graphics/lg.png');
-                }
-
-                &.blog {
-                    background-image: url('graphics/blog.png');
-                }
 
                 &.designs { 
-                    background-image: url('graphics/designs.png');
+                    background-image: url('graphics/collections.png');
                 }
             }
             
             &.text { // like header, but doesn't stay visible when you scroll away
+                
+                text-indent: -9999em;
+                
                 &.about {
                     background-image: url('graphics/aboutText.png');
                 }
@@ -103,66 +133,193 @@ body {
                 &.logistics {
                     background-image: url('graphics/logistics.png');
                 }
-            }
-            
-            &.divider {
-                @include background-size(100% 100%);
 
-                video {
-                    width: 100%;
-                    height: 100%;
-                    @include transform(scale3d(200.0, 1.0, 1.0));
-                    @include transition($transitionDuration $transitionCurve);
-                    @include transition-property(transform, -webkit-transform, -moz-transform);
+                &.logo {
+                    background-image: url('graphics/lg.png');
+                }
 
-                    @media screen and (max-aspect-ratio: 16/9) {
-                        width: auto;                        
-                        height: 100%;
+                &.blog {
+                    background-image: url('graphics/blog.png');
+                }
+                
+                &.sponsors {
+                    background-image: url('graphics/sponsors.png');
+                }
+                
+                &.names {
+                    
+                    &.beora {
+                        background-image: url('graphics/lines/beora/name.png');
                     }
                     
+                    &.bound {
+                        background-image: url('graphics/lines/bound/name.png');
+                    }
                     
-                    @media screen and (max-width: 48em) {
-                        display: none;
+                    &.cakery {
+                        background-image: url('graphics/lines/cakery/name.png');
+                    }
+                    
+                    &.cleen {
+                        background-image: url('graphics/lines/cleen/name.png');
+                    }
+                    
+                    &.dressedToKill {
+                        background-image: url('graphics/lines/dressedToKill/name.png');
+                    }
+                    
+                    &.exoskeleton {
+                        background-image: url('graphics/lines/exoskeleton/name.png');
+                    }
+                    
+                    &.intension {
+                        background-image: url('graphics/lines/intension/name.png');
+                    }
+                    
+                    &.letsPlay {
+                        background-image: url('graphics/lines/letsplay/name.png');
+                    }
+                    
+                    &.lustre {
+                        background-image: url('graphics/lines/lustre/name.png');
+                    }
+                    
+                    &.mas-querade {
+                        background-image: url('graphics/lines/mas-querade/name.png');
+                    }
+                    
+                    &.mashinka {
+                        background-image: url('graphics/lines/mashinka/name.png');
+                    }
+                    
+                    &.menagerie {
+                        background-image: url('graphics/lines/menagerie/name.png');
+                    }
+                    
+                    &.morph {
+                        background-image: url('graphics/lines/morph/name.png');
+                    }
+                    
+                    &.revive {
+                        background-image: url('graphics/lines/revive/name.png');
+                    }
+                    
+                    &.rift {
+                        background-image: url('graphics/lines/rift/name.png');
+                    }
+                    
+                    &.sinew {
+                        background-image: url('graphics/lines/sinew/name.png');
+                    }
+                    
+                    &.tact {
+                        background-image: url('graphics/lines/tact/name.png');
+                    }
+                    
+                    &.theWealthySlums {
+                        background-image: url('graphics/lines/theWealthySlums/name.png');
+                    }
+                    
+                    &.till {
+                        background-image: url('graphics/lines/till/name.png');
+                    }
+                    
+                    &.totsiens {
+                        background-image: url('graphics/lines/totsiens/name.png');
+                    }
+                    
+                    &.uncover {
+                        background-image: url('graphics/lines/uncover/name.png');
                     }
                 }
                 
-                &.active {
-                    video {
-                        @include transform(scale3d(8.0, 1.0, 1.0));
-                        
-                        @media screen and (max-aspect-ratio: 16/9) {
-                            @include transform(scale3d(4.0, 1.0, 1.0));
-                        }
+                &.description {
+                    
+                    &.beora {
+                        background-image: url('graphics/lines/beora/description.png');
                     }
-                }
-                
-                &.second-class {
-                    video {
-                        @include transform(scale3d(20.0, 1.0, 1.0));
+                    
+                    &.bound {
+                        background-image: url('graphics/lines/bound/description.png');
+                    }
+                    
+                    &.cakery {
+                        background-image: url('graphics/lines/cakery/description.png');
+                    }
+                    
+                    &.cleen {
+                        background-image: url('graphics/lines/cleen/description.png');
+                    }
+                    
+                    &.dressedToKill {
+                        background-image: url('graphics/lines/dressedToKill/description.png');
+                    }
+                    
+                    &.exoskeleton {
+                        background-image: url('graphics/lines/exoskeleton/description.png');
+                    }
+                    
+                    &.intension {
+                        background-image: url('graphics/lines/intension/description.png');
+                    }
+                    
+                    &.letsPlay {
+                        background-image: url('graphics/lines/letsplay/description.png');
+                    }
+                    
+                    &.lustre {
+                        background-image: url('graphics/lines/lustre/description.png');
+                    }
+                    
+                    &.mas-querade {
+                        background-image: url('graphics/lines/mas-querade/description.png');
+                    }
+                    
+                    &.mashinka {
+                        background-image: url('graphics/lines/mashinka/description.png');
+                    }
+                    
+                    &.menagerie {
+                        background-image: url('graphics/lines/menagerie/description.png');
+                    }
+                    
+                    &.morph {
+                        background-image: url('graphics/lines/morph/description.png');
+                    }
+                    
+                    &.revive {
+                        background-image: url('graphics/lines/revive/description.png');
+                    }
+                    
+                    &.rift {
+                        background-image: url('graphics/lines/rift/description.png');
+                    }
+                    
+                    &.sinew {
+                        background-image: url('graphics/lines/sinew/description.png');
+                    }
+                    
+                    &.tact {
+                        background-image: url('graphics/lines/tact/description.png');
+                    }
+                    
+                    &.theWealthySlums {
+                        background-image: url('graphics/lines/theWealthySlums/description.png');
+                    }
+                    
+                    &.till {
+                        background-image: url('graphics/lines/till/description.png');
+                    }
+                    
+                    &.totsiens {
+                        background-image: url('graphics/lines/totsiens/description.png');
+                    }
+                    
+                    &.uncover {
+                        background-image: url('graphics/lines/uncover/description.png');
                     }
                 }
             }
-            
-            // &.human {
-            //     -webkit-filter: brightness($defaultBrightness);
-            // 
-            //     &.active {
-            //         -webkit-filter: brightness($defaultBrightness);
-            //         // -webkit-animation: sectionPulse 2s infinite;
-            // 
-            //         &:hover, &:active {
-            //             -webkit-filter: brightness($defaultBrightness);
-            //         }
-            //     }
-            //     
-            //     &:hover {
-            //         -webkit-filter: brightness(1.5);
-            //     }     
-            //     
-            //     &:active {
-            //         -webkit-filter: brightness(3);
-            //     }           
-            // }
         }
     }
 }

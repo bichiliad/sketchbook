@@ -144,19 +144,19 @@ body .content section.human h2, body .content section.human p {
 
 @-webkit-keyframes sectionPulse {
   0% {
-    -webkit-filter: brightness(1.5);
+    opacity: .5;
   }
   50% {
-    -webkit-filter: brightness(1.7);
+    opacity: 1;
   }
   100% {
-    -webkit-filter: brightness(1.5);
+    opacity: .5;
   }
 }
 /* Constants */
 /* line 7, ../sass/_scrolling.scss */
 body {
-  height: 5950vh;
+  height: 9520vh;
   /* To allow scrolling */
   display: none;
   /* Hide until loaded */
@@ -181,12 +181,11 @@ body .content {
 /* line 29, ../sass/_scrolling.scss */
 body .content section {
   overflow: hidden;
+  position: absolute;
   box-sizing: border-box;
-  position: relative;
   width: 100%;
   text-align: justify;
   text-transform: lowercase;
-  position: relative;
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
@@ -217,45 +216,50 @@ body .content section {
          *************************/
 }
 /* line 38, ../sass/_scrolling.scss */
-body .content section.hideme {
-  display: none;
-}
-/* line 42, ../sass/_scrolling.scss */
-body .content section.hideme.header {
-  display: block;
-}
-/* line 47, ../sass/_scrolling.scss */
 body .content section .inside {
   display: none;
 }
-/* line 51, ../sass/_scrolling.scss */
-body .content section.divider img, body .content section.design img {
+/* line 42, ../sass/_scrolling.scss */
+body .content section.divider img, body .content section.design img, body .content section.designers img {
   position: absolute;
-  width: 100%;
+  top: 0;
+}
+/* line 47, ../sass/_scrolling.scss */
+body .content section.design img {
+  left: -50%;
+  -moz-background-size: 200% 100%;
+  -o-background-size: 200% 100%;
+  -webkit-background-size: 200% 100%;
+  background-size: 200% 100%;
+  width: 200%;
   height: 100%;
 }
-/* line 69, ../sass/_scrolling.scss */
+/* line 54, ../sass/_scrolling.scss */
+body .content section.designers img {
+  left: -50%;
+  top: -50%;
+  -moz-background-size: 200% 200%;
+  -o-background-size: 200% 200%;
+  -webkit-background-size: 200% 200%;
+  background-size: 200% 200%;
+  width: 200%;
+  height: 200%;
+}
+/* line 62, ../sass/_scrolling.scss */
+body .content section.divider img {
+  left: -175%;
+  -moz-background-size: 400% 100%;
+  -o-background-size: 400% 100%;
+  -webkit-background-size: 400% 100%;
+  background-size: 400% 100%;
+  width: 400%;
+  height: 100%;
+}
+/* line 81, ../sass/_scrolling.scss */
 body .content section.intro .inside {
   color: black;
 }
-/* line 75, ../sass/_scrolling.scss */
-body .content section.video .video-cover {
-  background-image: url("graphics/video.png");
-  -moz-background-size: 100% 100%;
-  -o-background-size: 100% 100%;
-  -webkit-background-size: 100% 100%;
-  background-size: 100% 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-/* line 85, ../sass/_scrolling.scss */
-body .content section.video iframe {
-  display: none;
-}
-/* line 98, ../sass/_scrolling.scss */
+/* line 94, ../sass/_scrolling.scss */
 body .content section.active .inside {
   display: block;
   -moz-transform: scale3d(1, 1, 1);
@@ -264,7 +268,14 @@ body .content section.active .inside {
   transform: scale3d(1, 1, 1);
   /* 75 / 75 */
 }
-/* line 106, ../sass/_scrolling.scss */
+/* line 100, ../sass/_scrolling.scss */
+body .content section.second-class {
+  -moz-transition-delay: 0.1;
+  -o-transition-delay: 0.1;
+  -webkit-transition-delay: 0.1;
+  transition-delay: 0.1;
+}
+/* line 103, ../sass/_scrolling.scss */
 body .content section.second-class .inside {
   display: block;
   -moz-transform: scale3d(1, 0.06, 1);
@@ -273,7 +284,7 @@ body .content section.second-class .inside {
   transform: scale3d(1, 0.06, 1);
   /* 4.5 / 75 */
 }
-/* line 121, ../sass/_scrolling.scss */
+/* line 118, ../sass/_scrolling.scss */
 body .content section .inside {
   -webkit-transform-origin: 0 0;
   /* Keep text aligned properly */
@@ -298,8 +309,9 @@ body.teaser.static .content {
 /* line 7, ../sass/_static.scss */
 body.teaser.static .content section {
   height: 4em;
+  position: relative !important;
 }
-/* line 10, ../sass/_static.scss */
+/* line 11, ../sass/_static.scss */
 body.teaser.static .content section .inside {
   display: block;
   -moz-transform: none;
@@ -307,40 +319,40 @@ body.teaser.static .content section .inside {
   -webkit-transform: none;
   transform: none;
 }
-/* line 15, ../sass/_static.scss */
+/* line 16, ../sass/_static.scss */
 body.teaser.static .content section.header {
   height: 4em;
 }
-/* line 18, ../sass/_static.scss */
+/* line 19, ../sass/_static.scss */
 body.teaser.static .content section.header.vestige {
   height: 20em;
 }
-/* line 22, ../sass/_static.scss */
+/* line 23, ../sass/_static.scss */
 body.teaser.static .content section.header.tagline {
   height: .5em;
   display: none;
 }
-/* line 27, ../sass/_static.scss */
+/* line 28, ../sass/_static.scss */
 body.teaser.static .content section.header.tickets {
   height: 8em;
 }
-/* line 31, ../sass/_static.scss */
+/* line 32, ../sass/_static.scss */
 body.teaser.static .content section.header.logistics {
   height: 12em;
 }
-/* line 35, ../sass/_static.scss */
+/* line 36, ../sass/_static.scss */
 body.teaser.static .content section.header.aboutText {
   height: 12em;
 }
-/* line 39, ../sass/_static.scss */
+/* line 40, ../sass/_static.scss */
 body.teaser.static .content section.header.sponsors {
   height: 8em;
 }
-/* line 44, ../sass/_static.scss */
+/* line 45, ../sass/_static.scss */
 body.teaser.static .content section.video {
   height: 12em;
 }
-/* line 48, ../sass/_static.scss */
+/* line 49, ../sass/_static.scss */
 body.teaser.static .content section.divider {
   height: 2em;
   -moz-background-size: 150% 150%;
@@ -349,23 +361,23 @@ body.teaser.static .content section.divider {
   background-size: 150% 150%;
   background-position: 25% 25%;
 }
-/* line 53, ../sass/_static.scss */
+/* line 54, ../sass/_static.scss */
 body.teaser.static .content section.divider:nth-child(4n+1) {
   height: 1em;
 }
-/* line 57, ../sass/_static.scss */
+/* line 58, ../sass/_static.scss */
 body.teaser.static .content section.divider:nth-child(odd) {
   height: 2em;
 }
-/* line 61, ../sass/_static.scss */
+/* line 62, ../sass/_static.scss */
 body.teaser.static .content section.divider:nth-child(3n+2) {
   height: 3em;
 }
-/* line 64, ../sass/_static.scss */
+/* line 65, ../sass/_static.scss */
 body.teaser.static .content section.divider:nth-child(4n+2) {
   height: 5em;
 }
-/* line 68, ../sass/_static.scss */
+/* line 69, ../sass/_static.scss */
 body.teaser.static .content section.divider video {
   display: none;
 }
@@ -883,16 +895,121 @@ section.human {
   background-image: url(../images/zhengCatherine.jpg);
 }
 
-/* line 13, ../sass/screen.scss */
+/* line 1, ../sass/_collections.scss */
+body .content section.designs.intension {
+  background-image: url("lines/1-intension.png");
+}
+
+/* line 4, ../sass/_collections.scss */
+body .content section.designs.lustre {
+  background-image: url("lines/2-lustre.png");
+}
+
+/* line 7, ../sass/_collections.scss */
+body .content section.designs.theWealthySlums {
+  background-image: url("lines/3-wealthoftheslums.png");
+}
+
+/* line 10, ../sass/_collections.scss */
+body .content section.designs.exoskeleton {
+  background-image: url("lines/4-exoskeleton.png");
+}
+
+/* line 13, ../sass/_collections.scss */
+body .content section.designs.cakery {
+  background-image: url("lines/5-cakery.png");
+}
+
+/* line 16, ../sass/_collections.scss */
+body .content section.designs.letsPlay {
+  background-image: url("lines/6-letsplay.png");
+}
+
+/* line 19, ../sass/_collections.scss */
+body .content section.designs.uncover {
+  background-image: url("lines/7-uncover.png");
+}
+
+/* line 22, ../sass/_collections.scss */
+body .content section.designs.mashinka {
+  background-image: url("lines/8-mashinka.png");
+}
+
+/* line 25, ../sass/_collections.scss */
+body .content section.designs.bound {
+  background-image: url("lines/9-bound.png");
+}
+
+/* line 28, ../sass/_collections.scss */
+body .content section.designs.mas-querade {
+  background-image: url("lines/10-masquerade.png");
+}
+
+/* line 31, ../sass/_collections.scss */
+body .content section.designs.dressedToKill {
+  background-image: url("lines/11-dressedtokill.png");
+}
+
+/* line 34, ../sass/_collections.scss */
+body .content section.designs.till {
+  background-image: url("lines/12-till.png");
+}
+
+/* line 37, ../sass/_collections.scss */
+body .content section.designs.morph {
+  background-image: url("lines/13-morph.png");
+}
+
+/* line 40, ../sass/_collections.scss */
+body .content section.designs.revive {
+  background-image: url("lines/14-revive.png");
+}
+
+/* line 43, ../sass/_collections.scss */
+body .content section.designs.totsiens {
+  background-image: url("lines/15-totsiens.png");
+}
+
+/* line 46, ../sass/_collections.scss */
+body .content section.designs.cleen {
+  background-image: url("lines/16-cleen.png");
+}
+
+/* line 49, ../sass/_collections.scss */
+body .content section.designs.tact {
+  background-image: url("lines/17-tact.png");
+}
+
+/* line 52, ../sass/_collections.scss */
+body .content section.designs.beora {
+  background-image: url("lines/18-beora.png");
+}
+
+/* line 55, ../sass/_collections.scss */
+body .content section.designs.sinew {
+  background-image: url("lines/19sinew.png");
+}
+
+/* line 58, ../sass/_collections.scss */
+body .content section.designs.menagerie {
+  background-image: url("lines/20-menagerie.png");
+}
+
+/* line 61, ../sass/_collections.scss */
+body .content section.designs.rift {
+  background-image: url("lines/21-rift.png");
+}
+
+/* line 20, ../sass/screen.scss */
 body {
   text-rendering: optimizeLegibility;
   -webkit-touch-callout: none;
 }
-/* line 17, ../sass/screen.scss */
+/* line 24, ../sass/screen.scss */
 body ::selection {
   background: #ff00ff;
 }
-/* line 23, ../sass/screen.scss */
+/* line 30, ../sass/screen.scss */
 body .content section {
   cursor: pointer;
   -moz-transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
@@ -900,11 +1017,11 @@ body .content section {
   -webkit-transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
   transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 27, ../sass/screen.scss */
+/* line 34, ../sass/screen.scss */
 body .content section.active {
   cursor: default;
 }
-/* line 31, ../sass/screen.scss */
+/* line 38, ../sass/screen.scss */
 body .content section.header, body .content section.text {
   -moz-background-size: 100% 100%;
   -o-background-size: 100% 100%;
@@ -912,24 +1029,18 @@ body .content section.header, body .content section.text {
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
-/* line 35, ../sass/screen.scss */
+/* line 42, ../sass/screen.scss */
 body .content section.header .inside, body .content section.text .inside {
   text-indent: -99999em;
 }
-/* line 41, ../sass/screen.scss */
-body .content section.header.title {
-  background-image: url("graphics/vestige.png");
+/* line 49, ../sass/screen.scss */
+body .content section.tickets.active:hover, body .content section.blog.active:hover {
+  -webkit-animation: sectionPulse .001s linear infinite;
+  -moz-animation: sectionPulse .001s linear infinite;
+  animation: sectionPulse .001s linear infinite;
 }
-/* line 45, ../sass/screen.scss */
-body .content section.header.tickets {
-  background-image: url("graphics/tickets.png");
-}
-/* line 48, ../sass/screen.scss */
-body .content section.header.tickets:hover {
-  opacity: .75;
-}
-/* line 54, ../sass/screen.scss */
-body .content section.header.tickets.active a, body .content section.header.tickets.second-class a {
+/* line 53, ../sass/screen.scss */
+body .content section.tickets a, body .content section.blog a {
   display: block;
   height: 100%;
   width: 100%;
@@ -937,103 +1048,259 @@ body .content section.header.tickets.active a, body .content section.header.tick
   top: 0;
   left: 0;
 }
-/* line 65, ../sass/screen.scss */
-body .content section.header.people {
-  background-image: url("graphics/people.png");
-}
-/* line 69, ../sass/screen.scss */
-body .content section.header.about {
-  background-image: url("graphics/about.png");
-}
-/* line 73, ../sass/screen.scss */
-body .content section.header.sponsors {
-  background-image: url("graphics/sponsors.png");
-}
-/* line 77, ../sass/screen.scss */
-body .content section.header.logo {
-  background-image: url("graphics/lg.png");
-}
-/* line 81, ../sass/screen.scss */
-body .content section.header.blog {
-  background-image: url("graphics/blog.png");
-}
-/* line 85, ../sass/screen.scss */
-body .content section.header.designs {
-  background-image: url("graphics/designs.png");
-}
-/* line 91, ../sass/screen.scss */
-body .content section.text.about {
-  background-image: url("graphics/aboutText.png");
-}
-/* line 95, ../sass/screen.scss */
-body .content section.text.tagline {
-  background-image: url("graphics/tagline.png");
-}
-/* line 99, ../sass/screen.scss */
-body .content section.text.sponsors {
-  background-image: url("graphics/sponsors/allSponsors.jpg");
-}
-/* line 103, ../sass/screen.scss */
-body .content section.text.logistics {
-  background-image: url("graphics/logistics.png");
-}
-/* line 108, ../sass/screen.scss */
-body .content section.divider {
+/* line 64, ../sass/screen.scss */
+body .content section.video .video-cover {
+  background-image: url("graphics/video.jpg");
   -moz-background-size: 100% 100%;
   -o-background-size: 100% 100%;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+  right: 0;
 }
-/* line 111, ../sass/screen.scss */
-body .content section.divider video {
-  width: 100%;
-  height: 100%;
-  -moz-transform: scale3d(200, 1, 1);
-  -ms-transform: scale3d(200, 1, 1);
-  -webkit-transform: scale3d(200, 1, 1);
-  transform: scale3d(200, 1, 1);
-  -moz-transition: cubic-bezier(0.19, 1, 0.22, 1) 1.5s;
-  -o-transition: cubic-bezier(0.19, 1, 0.22, 1) 1.5s;
-  -webkit-transition: cubic-bezier(0.19, 1, 0.22, 1) 1.5s;
-  transition: cubic-bezier(0.19, 1, 0.22, 1) 1.5s;
-  -moz-transition-property: -moz-transform, -webkit-transform, -moz-transform;
-  -o-transition-property: -o-transform, -webkit-transform, -moz-transform;
-  -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform;
-  transition-property: transform, -webkit-transform, -moz-transform;
+/* line 74, ../sass/screen.scss */
+body .content section.video .video-cover:hover {
+  -webkit-animation: sectionPulse .001s linear infinite;
+  -moz-animation: sectionPulse .001s linear infinite;
+  animation: sectionPulse .001s linear infinite;
 }
-@media screen and (max-aspect-ratio: 16 / 9) {
-  /* line 111, ../sass/screen.scss */
-  body .content section.divider video {
-    width: auto;
-    height: 100%;
-  }
+/* line 79, ../sass/screen.scss */
+body .content section.video iframe {
+  display: none;
 }
-@media screen and (max-width: 48em) {
-  /* line 111, ../sass/screen.scss */
-  body .content section.divider video {
-    display: none;
-  }
+/* line 86, ../sass/screen.scss */
+body .content section.header:hover {
+  -webkit-animation: sectionPulse .001s linear infinite;
+  -moz-animation: sectionPulse .001s linear infinite;
+  animation: sectionPulse .001s linear infinite;
 }
-/* line 130, ../sass/screen.scss */
-body .content section.divider.active video {
-  -moz-transform: scale3d(8, 1, 1);
-  -ms-transform: scale3d(8, 1, 1);
-  -webkit-transform: scale3d(8, 1, 1);
-  transform: scale3d(8, 1, 1);
+/* line 89, ../sass/screen.scss */
+body .content section.header:hover.active {
+  -webkit-animation: none;
+  -moz-animation: none;
+  animation: none;
 }
-@media screen and (max-aspect-ratio: 16 / 9) {
-  /* line 130, ../sass/screen.scss */
-  body .content section.divider.active video {
-    -moz-transform: scale3d(4, 1, 1);
-    -ms-transform: scale3d(4, 1, 1);
-    -webkit-transform: scale3d(4, 1, 1);
-    transform: scale3d(4, 1, 1);
-  }
+/* line 96, ../sass/screen.scss */
+body .content section.header.title {
+  background-image: url("graphics/vestige.png");
 }
-/* line 140, ../sass/screen.scss */
-body .content section.divider.second-class video {
-  -moz-transform: scale3d(20, 1, 1);
-  -ms-transform: scale3d(20, 1, 1);
-  -webkit-transform: scale3d(20, 1, 1);
-  transform: scale3d(20, 1, 1);
+/* line 100, ../sass/screen.scss */
+body .content section.header.tickets {
+  background-image: url("graphics/tickets.png");
+}
+/* line 104, ../sass/screen.scss */
+body .content section.header.people {
+  background-image: url("graphics/people.png");
+}
+/* line 108, ../sass/screen.scss */
+body .content section.header.about {
+  background-image: url("graphics/about.png");
+}
+/* line 112, ../sass/screen.scss */
+body .content section.header.designs {
+  background-image: url("graphics/collections.png");
+}
+/* line 117, ../sass/screen.scss */
+body .content section.text {
+  text-indent: -9999em;
+}
+/* line 121, ../sass/screen.scss */
+body .content section.text.about {
+  background-image: url("graphics/aboutText.png");
+}
+/* line 125, ../sass/screen.scss */
+body .content section.text.tagline {
+  background-image: url("graphics/tagline.png");
+}
+/* line 129, ../sass/screen.scss */
+body .content section.text.sponsors {
+  background-image: url("graphics/sponsors/allSponsors.jpg");
+}
+/* line 133, ../sass/screen.scss */
+body .content section.text.logistics {
+  background-image: url("graphics/logistics.png");
+}
+/* line 137, ../sass/screen.scss */
+body .content section.text.logo {
+  background-image: url("graphics/lg.png");
+}
+/* line 141, ../sass/screen.scss */
+body .content section.text.blog {
+  background-image: url("graphics/blog.png");
+}
+/* line 145, ../sass/screen.scss */
+body .content section.text.sponsors {
+  background-image: url("graphics/sponsors.png");
+}
+/* line 151, ../sass/screen.scss */
+body .content section.text.names.beora {
+  background-image: url("graphics/lines/beora/name.png");
+}
+/* line 155, ../sass/screen.scss */
+body .content section.text.names.bound {
+  background-image: url("graphics/lines/bound/name.png");
+}
+/* line 159, ../sass/screen.scss */
+body .content section.text.names.cakery {
+  background-image: url("graphics/lines/cakery/name.png");
+}
+/* line 163, ../sass/screen.scss */
+body .content section.text.names.cleen {
+  background-image: url("graphics/lines/cleen/name.png");
+}
+/* line 167, ../sass/screen.scss */
+body .content section.text.names.dressedToKill {
+  background-image: url("graphics/lines/dressedToKill/name.png");
+}
+/* line 171, ../sass/screen.scss */
+body .content section.text.names.exoskeleton {
+  background-image: url("graphics/lines/exoskeleton/name.png");
+}
+/* line 175, ../sass/screen.scss */
+body .content section.text.names.intension {
+  background-image: url("graphics/lines/intension/name.png");
+}
+/* line 179, ../sass/screen.scss */
+body .content section.text.names.letsPlay {
+  background-image: url("graphics/lines/letsplay/name.png");
+}
+/* line 183, ../sass/screen.scss */
+body .content section.text.names.lustre {
+  background-image: url("graphics/lines/lustre/name.png");
+}
+/* line 187, ../sass/screen.scss */
+body .content section.text.names.mas-querade {
+  background-image: url("graphics/lines/mas-querade/name.png");
+}
+/* line 191, ../sass/screen.scss */
+body .content section.text.names.mashinka {
+  background-image: url("graphics/lines/mashinka/name.png");
+}
+/* line 195, ../sass/screen.scss */
+body .content section.text.names.menagerie {
+  background-image: url("graphics/lines/menagerie/name.png");
+}
+/* line 199, ../sass/screen.scss */
+body .content section.text.names.morph {
+  background-image: url("graphics/lines/morph/name.png");
+}
+/* line 203, ../sass/screen.scss */
+body .content section.text.names.revive {
+  background-image: url("graphics/lines/revive/name.png");
+}
+/* line 207, ../sass/screen.scss */
+body .content section.text.names.rift {
+  background-image: url("graphics/lines/rift/name.png");
+}
+/* line 211, ../sass/screen.scss */
+body .content section.text.names.sinew {
+  background-image: url("graphics/lines/sinew/name.png");
+}
+/* line 215, ../sass/screen.scss */
+body .content section.text.names.tact {
+  background-image: url("graphics/lines/tact/name.png");
+}
+/* line 219, ../sass/screen.scss */
+body .content section.text.names.theWealthySlums {
+  background-image: url("graphics/lines/theWealthySlums/name.png");
+}
+/* line 223, ../sass/screen.scss */
+body .content section.text.names.till {
+  background-image: url("graphics/lines/till/name.png");
+}
+/* line 227, ../sass/screen.scss */
+body .content section.text.names.totsiens {
+  background-image: url("graphics/lines/totsiens/name.png");
+}
+/* line 231, ../sass/screen.scss */
+body .content section.text.names.uncover {
+  background-image: url("graphics/lines/uncover/name.png");
+}
+/* line 238, ../sass/screen.scss */
+body .content section.text.description.beora {
+  background-image: url("graphics/lines/beora/description.png");
+}
+/* line 242, ../sass/screen.scss */
+body .content section.text.description.bound {
+  background-image: url("graphics/lines/bound/description.png");
+}
+/* line 246, ../sass/screen.scss */
+body .content section.text.description.cakery {
+  background-image: url("graphics/lines/cakery/description.png");
+}
+/* line 250, ../sass/screen.scss */
+body .content section.text.description.cleen {
+  background-image: url("graphics/lines/cleen/description.png");
+}
+/* line 254, ../sass/screen.scss */
+body .content section.text.description.dressedToKill {
+  background-image: url("graphics/lines/dressedToKill/description.png");
+}
+/* line 258, ../sass/screen.scss */
+body .content section.text.description.exoskeleton {
+  background-image: url("graphics/lines/exoskeleton/description.png");
+}
+/* line 262, ../sass/screen.scss */
+body .content section.text.description.intension {
+  background-image: url("graphics/lines/intension/description.png");
+}
+/* line 266, ../sass/screen.scss */
+body .content section.text.description.letsPlay {
+  background-image: url("graphics/lines/letsplay/description.png");
+}
+/* line 270, ../sass/screen.scss */
+body .content section.text.description.lustre {
+  background-image: url("graphics/lines/lustre/description.png");
+}
+/* line 274, ../sass/screen.scss */
+body .content section.text.description.mas-querade {
+  background-image: url("graphics/lines/mas-querade/description.png");
+}
+/* line 278, ../sass/screen.scss */
+body .content section.text.description.mashinka {
+  background-image: url("graphics/lines/mashinka/description.png");
+}
+/* line 282, ../sass/screen.scss */
+body .content section.text.description.menagerie {
+  background-image: url("graphics/lines/menagerie/description.png");
+}
+/* line 286, ../sass/screen.scss */
+body .content section.text.description.morph {
+  background-image: url("graphics/lines/morph/description.png");
+}
+/* line 290, ../sass/screen.scss */
+body .content section.text.description.revive {
+  background-image: url("graphics/lines/revive/description.png");
+}
+/* line 294, ../sass/screen.scss */
+body .content section.text.description.rift {
+  background-image: url("graphics/lines/rift/description.png");
+}
+/* line 298, ../sass/screen.scss */
+body .content section.text.description.sinew {
+  background-image: url("graphics/lines/sinew/description.png");
+}
+/* line 302, ../sass/screen.scss */
+body .content section.text.description.tact {
+  background-image: url("graphics/lines/tact/description.png");
+}
+/* line 306, ../sass/screen.scss */
+body .content section.text.description.theWealthySlums {
+  background-image: url("graphics/lines/theWealthySlums/description.png");
+}
+/* line 310, ../sass/screen.scss */
+body .content section.text.description.till {
+  background-image: url("graphics/lines/till/description.png");
+}
+/* line 314, ../sass/screen.scss */
+body .content section.text.description.totsiens {
+  background-image: url("graphics/lines/totsiens/description.png");
+}
+/* line 318, ../sass/screen.scss */
+body .content section.text.description.uncover {
+  background-image: url("graphics/lines/uncover/description.png");
 }

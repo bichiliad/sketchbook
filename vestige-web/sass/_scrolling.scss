@@ -1,7 +1,7 @@
 /* Constants */
 
 $sections: 119;              // The number of scrolling sections
-$scroll-ratio: 5;            // How many full screen heights to scroll to advance a single slide
+$scroll-ratio: 8;            // How many full screen heights to scroll to advance a single slide
 
 
 body {
@@ -28,29 +28,41 @@ body {
     
          section {
             overflow: hidden;
+            position: absolute;
             box-sizing: border-box;
-            position: relative;
             width: 100%;
             text-align: justify;
             text-transform: lowercase;
-            position: relative;
 
-            &.hideme {
-                // height: 0%;
-                display: none;
-
-                &.header {
-                    display: block;
-                }
-            }
 
             .inside {
                 display: none;
             }
 
-            &.divider img, &.design img {
+            &.divider img, &.design img, &.designers img {
                 position: absolute;
-                width: 100%;
+                top: 0;
+            }
+
+            &.design img {
+                left: -50%;
+                @include background-size(200% 100%);
+                width: 200%;
+                height: 100%;
+            }
+
+            &.designers img {
+                left: -50%;
+                top: -50%;
+                @include background-size(200% 200%);
+                width: 200%;
+                height: 200%;
+            }
+            
+            &.divider img {
+                left: -175%;
+                @include background-size(400% 100%);
+                width: 400%;
                 height: 100%;
             }
             
@@ -70,23 +82,7 @@ body {
                     color: black;
                 }
             }
-    
-            &.video {
-                .video-cover {
-                    background-image: url('graphics/video.png');
-                    @include background-size(100% 100%);
-                    position: absolute;
-                    top: 0;
-                    bottom: 0; 
-                    left: 0; 
-                    right: 0;
-                }
-    
-                iframe {
-                    display: none;
-                }
-            }
-    
+        
             /*************************
     
             * Section sizing
@@ -102,6 +98,7 @@ body {
             }   
     
             &.second-class {
+                @include transition-delay(0.1);
     
                 .inside {
                     display: block;

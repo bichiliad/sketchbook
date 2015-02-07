@@ -12,15 +12,19 @@
     /* Constants */
     var ACTIVE_CLASS    = 'active',
         SECOND_CLASS    = 'second-class', 
-        THROTTLE_RATE   = 700,
-        SPLINTER_HEIGHT = 0.5,
-        HEADER_HEIGHT   = 4,
-        ACTIVE_HEIGHT   = 50,
+        THROTTLE_RATE   = 800,
+        HIDE_RATE       = 1000,
+        SPLINTER_HEIGHT = 2,
+        HEADER_HEIGHT   = 16,
+        ACTIVE_HEIGHT   = 28,
+        MOUSE_MOVES     = 15, 
+        MOUSE_MOVE_TIME = 1000,
         HIDEME_HEIGHT   = 0;
 
     /* Globals */
     var $player,
-        active = 0; 
+        active = 0,
+        hidden = false; 
 
     /* 
      * Stops the video playing, covers it, hides the player.
@@ -40,7 +44,7 @@
      * Makes the @idx-th element active, and adjusts the 
      * surrounding elements appropriately.
      */
-    var updateActive = function(idx) {
+    var updateActive = function(idx, hideHeaders) {
         // Selectors
         var $sections = $('.content section'),
             $active = $sections.eq(idx),
@@ -60,32 +64,67 @@
 
         // Update hidden sections
         // TODO: find another non-obvious efficient way to get all after/before the immediate 7.
-        $nextSecondClass.next().next().next().next().next().next().next().nextAll().addClass('hideme');
-        $prevSecondClass.prev().prev().prev().prev().prev().prev().prev().prevAll().addClass('hideme');
+        $nextSecondClass.next().next().next().next().next().nextAll().addClass('hideme');
+        $prevSecondClass.prev().prev().prev().prev().prev().prevAll().addClass('hideme');
 
         // Get headers, hidden, splinters
         var $headers = $sections.filter('.header:not(.' + ACTIVE_CLASS + ', .' + SECOND_CLASS + ')'),
             $hideme = $sections.filter('.hideme:not(.header)'),
-            $splinters = $sections.filter(':not(.header, .hideme, .' + ACTIVE_CLASS + ', .' + SECOND_CLASS + ')');
-
-        // Calculate the new heights. 
-        var activeHeader = $active.hasClass('header'),
+            $splinters = $sections.filter(':not(.header, .hideme, .' + ACTIVE_CLASS + ', .' + SECOND_CLASS + ')'),
+            activeHeader = $active.hasClass('header'),
             prevHeader = $prevSecondClass.hasClass('header'),
             nextHeader = $nextSecondClass.hasClass('header'),
             siblingTotal = Math.max($active.next().length + $active.prev().length, 1),
             splinterCount = $splinters.length,
-            headerCount = $headers.length,
-            secondClassHeight = (100 - ACTIVE_HEIGHT - HEADER_HEIGHT*headerCount - SPLINTER_HEIGHT*splinterCount)/2,
-            activeHeight = ACTIVE_HEIGHT + (siblingTotal == 1 ? secondClassHeight : 0);
+            headerCount = $headers.length;
 
+        var activeHeight, secondClassHeight, headerHeight;
+
+        if (!hideHeaders) {
+
+            // Calculate the new heights. 
+            secondClassHeight = (100 - (ACTIVE_HEIGHT - 35) - HEADER_HEIGHT*headerCount - SPLINTER_HEIGHT*splinterCount)/2;
+            activeHeight = (ACTIVE_HEIGHT - 35)+ (siblingTotal == 1 ? secondClassHeight : 0);
+            headerHeight = HEADER_HEIGHT;
+
+        } else {
+            var remainder = (headerCount * (HEADER_HEIGHT - SPLINTER_HEIGHT));
+            headerHeight = SPLINTER_HEIGHT;
+            secondClassHeight = (100 - ACTIVE_HEIGHT - HEADER_HEIGHT*headerCount - SPLINTER_HEIGHT*splinterCount)/2 + (remainder / 3);
+            activeHeight = ACTIVE_HEIGHT + (siblingTotal == 1 ? secondClassHeight : 0) + (remainder / 3);
+        }
 
         // Update heights
         $splinters.height(SPLINTER_HEIGHT + '%');           // Splinters
-        $headers.height(HEADER_HEIGHT + '%');               // Headers
+        $splinters.data('next-height', SPLINTER_HEIGHT + '%');
+
+        $headers.height(headerHeight + '%');                // Headers
+        $headers.data('next-height', headerHeight + '%');
+
         $active.height(activeHeight + '%');                 // Active
+        $active.data('next-height', activeHeight + '%');
+
         $nextSecondClass.height(secondClassHeight + '%');   // Second classes
+        $nextSecondClass.data('next-height', secondClassHeight + '%');
         $prevSecondClass.height(secondClassHeight + '%');
+        $prevSecondClass.data('next-height', secondClassHeight + '%');
+
         $hideme.height(HIDEME_HEIGHT + '%');                // Hideme
+        $hideme.data('next-height', HIDEME_HEIGHT + '%');
+
+        hidden = !!hideHeaders;
+
+        updateTops();
+    };
+
+    var updateTops = function() {
+        var total = 0;
+        $('section').each(function(i, elem) {
+            $(elem).css('top', total + '%');
+            var percent = $(elem).data('next-height');
+            percent = percent.slice(0, percent.length - 1);
+            total += parseFloat(percent);
+        });
     };
 
 
@@ -107,14 +146,14 @@
                 case 38: // up
                     newIdx = (active - 1 + $sections.length) % $sections.length;
                     fixScroll(newIdx);
-                    updateActive(newIdx);
+                    updateActive(newIdx, true);
                 break;
 
                 case 39: // right
                 case 40: // down
                     newIdx = (active+1) % $sections.length;
                     fixScroll(newIdx);
-                    updateActive(newIdx);
+                    updateActive(newIdx, true);
                 break;
 
                 // Ignore other keys
@@ -144,7 +183,6 @@
      */
     var initializeClickHandlers = function() {
         $('.content section').click(function() {
-            console.log('click', this);
             var idx = $(this).data('index');
             fixScroll(idx);
             updateActive(idx);
@@ -168,7 +206,7 @@
             var newActive = Math.round(scrollPercent * ($sections.length - 1));
 
             // Update the screen
-            updateScroll(newActive);
+            updateScroll(newActive, true);
         });
     };
 
@@ -194,6 +232,50 @@
         });
     };
 
+    var triggerPageAction = (function() {
+        var timeoutId = -1;
+        return function () {
+            clearTimeout(timeoutId);
+            if (hidden) {
+                updateActive(active); 
+            }
+            timeoutId = setTimeout(function() {
+                updateActive(active, true);
+            }, HIDE_RATE);
+        };
+    })();
+
+    /* 
+     * Hide titles whenever the mouse hasn't moved in a bit
+     */
+    var initializeMouseMoveHandler = function() {
+        var calls = 0;
+        
+        var resetCalls = (function() {
+            var timeoutId = -1;
+            return function() {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(function() {
+                    calls = 0;
+                }, MOUSE_MOVE_TIME);
+            };
+        })();
+
+
+        $('.header').mousemove(function() {
+            if( $(this).hasClass('active') || $(this).hasClass('second-class')) {
+                return;
+            }
+
+            console.log('mousemove');
+            resetCalls();
+            calls++;
+            if (calls >= MOUSE_MOVES) {
+                triggerPageAction(); 
+            }
+        });
+    };
+
     /* 
      * Initialize on page load 
      */
@@ -208,10 +290,7 @@
         // Add 'static' class to page on mobile. 
         if ( window.mobilecheck ) {
             $('body').addClass('static');
-            console.log('static site');
             return;
-        } else {
-            console.log('not static site');
         }
 
         // Hide all but the initial 14 non-header slides.
@@ -235,11 +314,13 @@
         $('img').filter(function(i, elem) { 
             return !!($(elem).attr('data-src')); 
         }).map(function(i, elem) {
-            var gif = new Image(); 
-            gif.onload = function() {
-                $(elem).replaceWith(gif);
-            }; 
-            gif.src = $(elem).attr('data-src'); 
+            setTimeout(function() {
+                var gif = new Image(); 
+                gif.onload = function() {
+                    $(elem).replaceWith(gif);
+                }; 
+                gif.src = $(elem).attr('data-src');     
+            }, 1000);
         });
 
         // Bind handlers
@@ -247,6 +328,7 @@
         initializeClickHandlers();
         initializeVideoHandlers();
         initializeScrollHandler();
+        initializeMouseMoveHandler();
        
         // Prevent some of the flash of unloaded content.
         console.log('good to go');
