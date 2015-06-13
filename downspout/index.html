@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="downspout">
+  <head>
+    <meta charset="utf-8">
+    <title>Downspout</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" media="screen" title="no title" charset="utf-8">
+
+    <!-- Scripts -->
+    <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
+    <script src="js/vendor/soundcloud.js"></script>
+
+  </head>
+  <body ng-controller="MainController">
+    <h1>Downspout</h1>
+
+    <div ng-repeat="track in feed.collection | filter: {origin: {downloadable: true}}">
+      <div ng-bind-html="track.oEmbed.html"></div>
+    </div>
+
+    <!-- The app -->
+    <script src="js/app.js" charset="utf-8"></script>
+    <script src="js/controllers/main.js" charset="utf-8"></script>
+  </body>
+</html>
