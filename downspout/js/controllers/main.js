@@ -1,5 +1,5 @@
 angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce', function($scope, $q, $sce) {
-    var host = 'http://downspout.dev';
+    var host = 'http://salem.io/sketchbook/downspout';
 
     // Get the user logged in
     var login = function() {
@@ -7,7 +7,7 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
             var token = localStorage.getItem('access_token');
             var options = {
                 client_id: '2b7f29617f693e9913cb25ca16703473',
-                redirect_uri: host + '/sketchbook/downspout/callback.html'
+                redirect_uri: host + '/callback.html'
             };
 
             if (token) {
