@@ -78,18 +78,18 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
         .then(function(data) {
             $scope.feed = data;
 
-            angular.forEach($scope.feed.collection, function(track) {
-                SC.oEmbed(track.origin.permalink_url, {
-                    maxheight: 150,
-                }, function(oEmbed) {
-                    console.log("oembed for " + track.origin.title, oEmbed);
-                    $scope.$apply(function() {
-                        console.log('application goin on ');
-                        track.oEmbed = oEmbed;
-                        track.oEmbed.html = $sce.trustAsHtml(track.oEmbed.html)
-                    });
-                });
-            });
+            // angular.forEach($scope.feed.collection, function(track) {
+            //     SC.oEmbed(track.origin.permalink_url, {
+            //         maxheight: 150,
+            //     }, function(oEmbed) {
+            //         console.log("oembed for " + track.origin.title, oEmbed);
+            //         $scope.$apply(function() {
+            //             console.log('application goin on ');
+            //             track.oEmbed = oEmbed;
+            //             track.oEmbed.html = $sce.trustAsHtml(track.oEmbed.html)
+            //         });
+            //     });
+            // });
             console.log(data);
             // setInterval(function() {
             //     updateFeed(data.future_href);

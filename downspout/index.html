@@ -6,17 +6,52 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/main.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/vendor/progress-polyfill.css" media="screen" title="no title" charset="utf-8">
 
     <!-- Scripts -->
     <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
     <script src="js/vendor/soundcloud.js"></script>
+    <script src="js/vendor/progress-polyfill.min.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/plangular/dist/plangular.min.js"></script>
+    <script src="/bower_components/angular-ui-utils/unique.min.js"></script>
 
   </head>
   <body ng-controller="MainController">
     <h1>Downspout</h1>
 
-    <div ng-repeat="track in feed.collection | filter: {origin: {downloadable: true}}">
-      <div ng-bind-html="track.oEmbed.html"></div>
+    <!--div class="track"
+            ng-repeat="track in feed.collection | filter: {origin: {downloadable: true}} | filter: oEmbed.html"
+            ng-bind-html="track.oEmbed.html">
+    </div-->
+    <div class="tracks">
+        <div class="track"
+                ng-repeat="feedItem in feed.collection | filter: {origin: {downloadable: true}} | unique:'origin.permalink_url'"
+                plangular="{{feedItem.origin.permalink_url}}">
+            <div class="track-body" ng-if="track">
+                <div class="track-info">
+                    <h3>{{track.user.username}} - {{track.title}}</h3>
+                    <a ng-href="{{track.permalink_url}}">View on SoundCloud</a>
+                </div>
+
+                <div class="track-controls">
+                    <div class="play control" ng-click="play()" ng-show="player.playing !== track.src">
+                        <svg class="js-geomicon geomicon" data-icon="play" viewBox="0 0 32 32" style="fill:currentcolor"><title>play icon</title><path d="M4 4 L28 16 L4 28 z"></path></svg>
+                      </div>
+                    <div class="pause control" ng-click="pause()" ng-show="player.playing === track.src">
+                        <svg class="js-geomicon geomicon" data-icon="pause" viewBox="0 0 32 32" style="fill:currentcolor"><title>pause icon</title><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z"></path></svg>
+                    </div>
+
+                    <progress
+                            ng-click="play(); seek($event)"
+                            ng-value="currentTime / duration">
+                        {{ currentTime / duration }}
+                    </progress>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <!-- The app -->
