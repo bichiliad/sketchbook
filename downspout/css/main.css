@@ -8,7 +8,7 @@ html {
 
 body {
     font-family: Avenir Next,Helvetica Neue,Helvetica,Arial,sans-serif;
-    background-image: linear-gradient(#9494cc, #FF2934);
+    background-image: linear-gradient(#E3454D, #D45A54);
     height: 100%;
 }
 
@@ -34,8 +34,9 @@ iframe {
 }
 
 .track {
-    margin-bottom: 1em;
+    margin-bottom: 30px;
     background: white;
+    border-radius: 2px;
 }
 
 .track-column {
@@ -60,6 +61,11 @@ iframe {
     width: 100%
 }
 
+.track-menu {
+  position: absolute;
+  right: 0;
+}
+
 .track-info h5 {
     font-weight: 400;
 }
@@ -67,6 +73,17 @@ iframe {
 .track-info h6 {
     text-transform: uppercase;
     margin-bottom: 0.5em;
+}
+
+.track-info h5 a,
+.track-info h6 a {
+    color: #222;
+    text-decoration: none;
+}
+
+.track-info h5 a:hover,
+.track-info h6 a:hover {
+    text-decoration: underline;
 }
 
 
@@ -82,6 +99,8 @@ iframe {
 
 .artwork {
   width: 100%;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
 }
 
 

@@ -32,11 +32,13 @@
                     <img class="artwork" ng-src="{{ getLargerAlbumArt(track.artwork_url || track.user.avatar_url) }}" alt="{{ track.title }}" />
                 </div>
                 <div class="track-column info">
-                    <div class="track-info">
-                        <h6>{{track.user.username}}</h6>
-                        <h5>{{track.title}}</h5>
+                    <div class="track-menu">
                         <a ng-href="{{track.permalink_url}}">View</a> | <a ng-href="{{track.permalink_url}}/download" download>Download</a>
+                    </div>
 
+                    <div class="track-info">
+                        <h6><a ng-href="{{track.user.permalink_url}}">{{track.user.username}}</a></h6>
+                        <h5>{{track.title}}</h5>
                     </div>
 
                     <div class="track-controls">
