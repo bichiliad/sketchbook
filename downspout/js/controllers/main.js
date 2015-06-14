@@ -6,7 +6,7 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
         return $q(function(resolve, reject) {
             var token = localStorage.getItem('access_token');
             var options = {
-                client_id: '2b7f29617f693e9913cb25ca16703473',
+                client_id: '38cd5c395a7fe59aa456022eb3131667',
                 redirect_uri: host + '/callback.html'
             };
 
