@@ -70,6 +70,24 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
         });
     }
 
+    $scope.getLargerAlbumArt = function(url) {
+        return url.replace('large', 't500x500');
+    }
+
+    $scope.more = function() {
+        SC.get($scope.feed.next_href, function(data, error) {
+            if (error) {
+                console.error(error);
+            } else {
+                $scope.$apply(function() {
+                    $scope.feed.collection = $scope.feed.collection.concat(data.collection);
+                    $scope.feed.future_href = data.future_href;
+                    $scope.feed.next_href = data.next_href;
+                });
+            }
+        })
+    }
+
     // Make 'er work
     login()
         .then(function() {
@@ -77,30 +95,6 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
         })
         .then(function(data) {
             $scope.feed = data;
-
-            angular.forEach($scope.feed.collection, function(track) {
-                SC.oEmbed(track.origin.permalink_url, {
-                    maxheight: 150,
-                }, function(oEmbed) {
-                    console.log("oembed for " + track.origin.title, oEmbed);
-                    $scope.$apply(function() {
-                        console.log('application goin on ');
-                        track.oEmbed = oEmbed;
-                        track.oEmbed.html = $sce.trustAsHtml(track.oEmbed.html)
-                    });
-                });
-            });
             console.log(data);
-            // setInterval(function() {
-            //     updateFeed(data.future_href);
-            // }, 1000)
-
-            // SC.get('https://api.soundcloud.com/tracks/210168386', function(data, error) {
-            //     if (error) {
-            //         console.error(error);
-            //     } else {
-            //         console.log('track', data);
-            //     }
-            // });
         }).catch(console.log.bind(console));
 }]);

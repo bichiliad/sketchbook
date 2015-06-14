@@ -1,0 +1,188 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    font-family: Avenir Next,Helvetica Neue,Helvetica,Arial,sans-serif;
+    background-image: linear-gradient(#E3454D, #D45A54);
+    height: 100%;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 1.5em 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: .2em;
+    color: white;
+}
+
+iframe {
+    width: 100%;
+}
+
+.tracks {
+    width: 100%;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.track {
+    margin-bottom: 30px;
+    background: white;
+    border-radius: 2px;
+}
+
+.track-column {
+    height: 176px;
+    position: relative;
+    float: left;
+}
+
+.track-column.artwork {
+    width: 176px;
+}
+
+.track-column.info {
+    padding-left: 30px;
+    padding-top: 20px;
+    width: calc(100% - 206px);
+}
+
+.track-controls {
+    position: absolute;
+    bottom: 10px;
+    width: 100%
+}
+
+.track-menu {
+  position: absolute;
+  right: 0;
+}
+
+.track-info h5 {
+    font-weight: 400;
+}
+
+.track-info h6 {
+    text-transform: uppercase;
+    margin-bottom: 0.5em;
+}
+
+.track-info h5 a,
+.track-info h6 a {
+    color: #222;
+    text-decoration: none;
+}
+
+.track-info h5 a:hover,
+.track-info h6 a:hover {
+    text-decoration: underline;
+}
+
+
+ /* Player */
+.control {
+    width: 30px;
+    height: 30px;
+    color: #111111;
+    float: left;
+    margin-left: -3px;
+    margin-right: 10px;
+}
+
+.artwork {
+  width: 100%;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+
+
+/* Progress bar, oh god here we go */
+
+progress,
+progress[role]
+{
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	border: none;
+	background-size: auto;
+	width: calc(100% - 68px);
+	height: 22px;
+    float: left;
+    margin-top: 4px;
+
+}
+progress[role]:after {
+	background-image: none; /* removes default background from polyfill */
+}
+progress[role] strong {
+	display: none;
+}
+
+/* Progress bar background */
+progress,
+progress[role][aria-valuenow] {
+   background: rgba(0, 0, 0, 0.1) !important;
+}
+progress::-webkit-progress-bar {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Progress bar foreground */
+progress {
+    color: #111111;
+}
+progress::-moz-progress-bar {
+    background: #111111;
+}
+progress::-webkit-progress-value {
+    background: #111111;
+}
+progress[aria-valuenow]:before  {
+    background: #111111;
+}
+
+
+
+/* Animations */
+.track-body.ng-move,
+.track-body.ng-enter,
+.track-body.ng-leave {
+  -webkit-transition:all linear 200ms;
+  transition:all linear 200ms;
+}
+
+.track-body.ng-move-stagger,
+.track-body.ng-enter-stagger,
+.track-body.ng-leave-stagger {
+    -webkit-transition-delay: 100ms;
+    transition-delay: 100ms;
+
+    -webkit-transition-duration: 0;
+    transition-duration: 0;
+}
+
+.track-body.ng-leave.ng-leave-active,
+.track-body.ng-move,
+.track-body.ng-enter {
+  opacity:0;
+  max-height:0;
+  transform: translate3d(0, -20px, 0)
+}
+
+.track-body.ng-leave,
+.track-body.ng-move.ng-move-active,
+.track-body.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height:40px;
+  transform: none;
+}
