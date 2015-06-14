@@ -29,8 +29,11 @@ iframe {
 }
 
 .track {
-    min-height: 150px;
     margin-bottom: 1em;
+    min-height: 200px;
+}
+
+.track-body {
 }
 
 
@@ -42,6 +45,11 @@ iframe {
     float: left;
     margin: 0 10px;
 }
+
+.artwork {
+  width: 100%;
+}
+
 
 
 /* Progress bar, oh god here we go */
@@ -93,17 +101,16 @@ progress[aria-valuenow]:before  {
 
 
 /* Animations */
-
-.track.ng-move,
-.track.ng-enter,
-.track.ng-leave {
+.track-body.ng-move,
+.track-body.ng-enter,
+.track-body.ng-leave {
   -webkit-transition:all linear 200ms;
   transition:all linear 200ms;
 }
 
-.track.ng-move-stagger,
-.track.ng-enter-stagger,
-.track.ng-leave-stagger {
+.track-body.ng-move-stagger,
+.track-body.ng-enter-stagger,
+.track-body.ng-leave-stagger {
     -webkit-transition-delay: 100ms;
     transition-delay: 100ms;
 
@@ -111,17 +118,17 @@ progress[aria-valuenow]:before  {
     transition-duration: 0;
 }
 
-.track.ng-leave.ng-leave-active,
-.track.ng-move,
-.track.ng-enter {
+.track-body.ng-leave.ng-leave-active,
+.track-body.ng-move,
+.track-body.ng-enter {
   opacity:0;
   max-height:0;
   transform: translate3d(0, -20px, 0)
 }
 
-.track.ng-leave,
-.track.ng-move.ng-move-active,
-.track.ng-enter.ng-enter-active {
+.track-body.ng-leave,
+.track-body.ng-move.ng-move-active,
+.track-body.ng-enter.ng-enter-active {
   opacity:1;
   max-height:40px;
   transform: none;

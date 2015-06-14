@@ -70,6 +70,10 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
         });
     }
 
+    $scope.getLargerAlbumArt = function(url) {
+        return url.replace('large', 't500x500');
+    }
+
     $scope.more = function() {
         SC.get($scope.feed.next_href, function(data, error) {
             if (error) {

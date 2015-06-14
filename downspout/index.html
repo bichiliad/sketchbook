@@ -5,7 +5,8 @@
     <title>Downspout</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/vendor/skeleton/normalize.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/vendor/skeleton/skeleton.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/main.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/vendor/progress-polyfill.css" media="screen" title="no title" charset="utf-8">
 
@@ -29,26 +30,38 @@
         <div class="track"
                 ng-repeat="feedItem in feed.collection | filter: {origin: {downloadable: true}} | unique:'origin.permalink_url'"
                 plangular="{{feedItem.origin.permalink_url}}">
-            <div class="track-body" ng-if="track">
-                <div class="track-info">
-                    <h3>{{track.user.username}} - {{track.title}}</h3>
-                    <a ng-href="{{track.permalink_url}}">View on SoundCloud</a>
-                </div>
+            <div class="track-body row" ng-if="track">
 
-                <div class="track-controls">
-                    <div class="play control" ng-click="play()" ng-show="player.playing !== track.src">
-                        <svg class="js-geomicon geomicon" data-icon="play" viewBox="0 0 32 32" style="fill:currentcolor"><title>play icon</title><path d="M4 4 L28 16 L4 28 z"></path></svg>
-                      </div>
-                    <div class="pause control" ng-click="pause()" ng-show="player.playing === track.src">
-                        <svg class="js-geomicon geomicon" data-icon="pause" viewBox="0 0 32 32" style="fill:currentcolor"><title>pause icon</title><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z"></path></svg>
+                <div class="three columns">
+                    <img class="artwork" ng-src="{{ getLargerAlbumArt(track.artwork_url || track.user.avatar_url) }}" alt="{{ track.title }}" />
+                </div>
+                <div class="nine columns">
+                    <div class="track-info">
+                        <h6>{{track.user.username}}</h6>
+                        <h5>{{track.title}}</h5>
+                        <a ng-href="{{track.permalink_url}}">View on SoundCloud</a>
                     </div>
 
-                    <progress
-                            ng-click="play(); seek($event)"
-                            ng-value="currentTime / duration">
-                        {{ currentTime / duration }}
-                    </progress>
+                    <div class="track-controls">
+                        <div class="play control" ng-click="play()" ng-show="player.playing !== track.src">
+                            <svg class="js-geomicon geomicon" data-icon="play" viewBox="0 0 32 32" style="fill:currentcolor"><title>play icon</title><path d="M4 4 L28 16 L4 28 z"></path></svg>
+                          </div>
+                        <div class="pause control" ng-click="pause()" ng-show="player.playing === track.src">
+                            <svg class="js-geomicon geomicon" data-icon="pause" viewBox="0 0 32 32" style="fill:currentcolor"><title>pause icon</title><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z"></path></svg>
+                        </div>
+
+                        <div class="progress-bar">
+                            <progress
+                                    ng-click="play(); seek($event)"
+                                    ng-value="currentTime / duration">
+                                {{ currentTime / duration }}
+                            </progress>
+
+                        </div>
+
+                    </div>
                 </div>
+
 
             </div>
         </div>
