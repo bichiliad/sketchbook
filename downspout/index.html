@@ -22,24 +22,21 @@
   <body ng-controller="MainController">
     <h1>Downspout</h1>
 
-    <!--div class="track"
-            ng-repeat="track in feed.collection | filter: {origin: {downloadable: true}} | filter: oEmbed.html"
-            ng-bind-html="track.oEmbed.html">
-    </div-->
     <div class="tracks">
         <div class="track"
                 ng-repeat="feedItem in feed.collection | filter: {origin: {downloadable: true}} | unique:'origin.permalink_url'"
                 plangular="{{feedItem.origin.permalink_url}}">
             <div class="track-body row" ng-if="track">
 
-                <div class="three columns">
+                <div class="track-column artwork">
                     <img class="artwork" ng-src="{{ getLargerAlbumArt(track.artwork_url || track.user.avatar_url) }}" alt="{{ track.title }}" />
                 </div>
-                <div class="nine columns">
+                <div class="track-column info">
                     <div class="track-info">
                         <h6>{{track.user.username}}</h6>
                         <h5>{{track.title}}</h5>
-                        <a ng-href="{{track.permalink_url}}">View on SoundCloud</a>
+                        <a ng-href="{{track.permalink_url}}">View</a> | <a ng-href="{{track.permalink_url}}/download" download>Download</a>
+
                     </div>
 
                     <div class="track-controls">
@@ -50,14 +47,11 @@
                             <svg class="js-geomicon geomicon" data-icon="pause" viewBox="0 0 32 32" style="fill:currentcolor"><title>pause icon</title><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z"></path></svg>
                         </div>
 
-                        <div class="progress-bar">
-                            <progress
-                                    ng-click="play(); seek($event)"
-                                    ng-value="currentTime / duration">
-                                {{ currentTime / duration }}
-                            </progress>
-
-                        </div>
+                        <progress
+                                ng-click="play(); seek($event)"
+                                ng-value="currentTime / duration">
+                            {{ currentTime / duration }}
+                        </progress>
 
                     </div>
                 </div>

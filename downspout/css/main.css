@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 html {
     min-height: 100%;
 }
@@ -24,16 +28,45 @@ iframe {
 
 .tracks {
     width: 100%;
-    max-width: 800px;
+    max-width: 820px;
     margin: 0 auto;
+    padding: 10px;
 }
 
 .track {
     margin-bottom: 1em;
-    min-height: 200px;
+    background: white;
 }
 
-.track-body {
+.track-column {
+    height: 176px;
+    position: relative;
+    float: left;
+}
+
+.track-column.artwork {
+    width: 176px;
+}
+
+.track-column.info {
+    padding-left: 30px;
+    padding-top: 20px;
+    width: calc(100% - 206px);
+}
+
+.track-controls {
+    position: absolute;
+    bottom: 10px;
+    width: 100%
+}
+
+.track-info h5 {
+    font-weight: 400;
+}
+
+.track-info h6 {
+    text-transform: uppercase;
+    margin-bottom: 0.5em;
 }
 
 
@@ -41,9 +74,10 @@ iframe {
 .control {
     width: 30px;
     height: 30px;
-    color: white;
+    color: #111111;
     float: left;
-    margin: 0 10px;
+    margin-left: -3px;
+    margin-right: 10px;
 }
 
 .artwork {
@@ -62,7 +96,7 @@ progress[role]
 	-webkit-appearance: none;
 	border: none;
 	background-size: auto;
-	width: calc(100% - 50px);
+	width: calc(100% - 68px);
 	height: 22px;
     float: left;
     margin-top: 4px;
@@ -78,24 +112,24 @@ progress[role] strong {
 /* Progress bar background */
 progress,
 progress[role][aria-valuenow] {
-   background: rgba(255, 255, 255, 0.2) !important;
+   background: rgba(0, 0, 0, 0.1) !important;
 }
 progress::-webkit-progress-bar {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.1);
 }
 
 /* Progress bar foreground */
 progress {
-    color: white;
+    color: #111111;
 }
 progress::-moz-progress-bar {
-    background: white;
+    background: #111111;
 }
 progress::-webkit-progress-value {
-    background: white;
+    background: #111111;
 }
 progress[aria-valuenow]:before  {
-    background: white;
+    background: #111111;
 }
 
 
