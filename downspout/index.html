@@ -29,19 +29,26 @@
             <div class="track-body row" ng-if="track">
 
                 <div class="track-column artwork">
-                    <img class="artwork" ng-src="{{ getLargerAlbumArt(track.artwork_url || track.user.avatar_url) }}" alt="{{ track.title }}" />
+                    <img class="artwork" ng-src="{{ getLargerAlbumArt(track.artwork_url || track.user.avatar_url) }}" alt="{{ track.title }}"/>
+                    <!-- <div class="artwork-details">Copy artwork url</div> -->
                 </div>
                 <div class="track-column info">
                     <div class="track-menu">
-                        <a ng-href="{{track.permalink_url}}">View</a> | <a ng-href="{{track.permalink_url}}/download" download>Download</a>
+                        <a class="menu-item" ng-href="{{track.permalink_url}}" target="_blank" title="Permalink">
+                            <svg class="js-geomicon geomicon" data-icon="link" viewBox="0 0 32 32" style="fill:currentcolor"><title>link icon</title><path d="M0 16 A8 8 0 0 1 8 8 L14 8 A8 8 0 0 1 22 16 L18 16 A4 4 0 0 0 14 12 L8 12 A4 4 0 0 0 4 16 A4 4 0 0 0 8 20 L10 24 L8 24 A8 8 0 0 1 0 16z M22 8 L24 8 A8 8 0 0 1 32 16 A8 8 0 0 1 24 24 L18 24 A8 8 0 0 1 10 16 L14 16 A4 4 0 0 0 18 20 L24 20 A4 4 0 0 0 28 16 A4 4 0 0 0 24 12z"></path></svg>
+                        </a>
+                        <a class="menu-item" ng-href="{{track.permalink_url}}/download" download title="Download">
+                            <svg class="js-geomicon geomicon" data-icon="chevronDown" viewBox="0 0 32 32" style="fill:currentcolor"><title>chevronDown icon</title><path d="M1 12 L16 26 L31 12 L27 8 L16 18 L5 8 z"></path></svg>
+                        </a>
                     </div>
 
                     <div class="track-info">
-                        <h6><a ng-href="{{track.user.permalink_url}}">{{track.user.username}}</a></h6>
-                        <h5>{{track.title}}</h5>
+                        <h6><a ng-href="{{track.user.permalink_url}}" target="_blank">{{track.user.username}}</a></h6>
+                        <h5><a ng-href="{{track.permalink_url}}" target="_blank">{{track.title}}</a></h5>
                     </div>
 
                     <div class="track-controls">
+                        <small class="time">{{ currentTime | hhmmss }} | {{ (duration || track.duration/1000) | hhmmss }}</small>
                         <div class="play control" ng-click="play()" ng-show="player.playing !== track.src">
                             <svg class="js-geomicon geomicon" data-icon="play" viewBox="0 0 32 32" style="fill:currentcolor"><title>play icon</title><path d="M4 4 L28 16 L4 28 z"></path></svg>
                           </div>
