@@ -1,5 +1,7 @@
-angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce', function($scope, $q, $sce) {
-    var host = 'http://salem.io/sketchbook/downspout';
+angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce', '$window', function($scope, $q, $sce, $window) {
+    var host = 'http://salem.io/sketchbook/downspout',
+        infiniteScrollRange = 300;
+
 
     // Get the user logged in
     var login = function() {
@@ -68,13 +70,26 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
                 });
             }
         });
-    }
+    };
+
+    var initializeInfiniteScroll = function() {
+        var elem = angular.element(document);
+        elem.bind('scroll', function() {
+            if (window.pageYOffset + window.innerHeight >= document.body.clientHeight - infiniteScrollRange) {
+                $scope.more();
+            }
+        });
+    };
 
     $scope.getLargerAlbumArt = function(url) {
         return url.replace('large', 't500x500');
-    }
+    };
 
-    $scope.more = function() {
+    $scope.more = _.throttle(function() {
+        if (!$scope.feed) {
+            return;
+        }
+
         SC.get($scope.feed.next_href, function(data, error) {
             if (error) {
                 console.error(error);
@@ -86,7 +101,7 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
                 });
             }
         })
-    }
+    }, 300);
 
     // Make 'er work
     login()
@@ -95,6 +110,7 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
         })
         .then(function(data) {
             $scope.feed = data;
+            // initializeInfiniteScroll();
             console.log(data);
         }).catch(console.log.bind(console));
 }]);
