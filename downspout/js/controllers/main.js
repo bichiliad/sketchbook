@@ -103,13 +103,17 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
     }, 300);
 
     // Make 'er work
-    login()
-        .then(function() {
-            return getUserFeed();
-        })
-        .then(function(data) {
-            $scope.feed = data;
-            initializeInfiniteScroll();
-            console.log(data);
-        }).catch(console.log.bind(console));
+    $scope.start = function() {
+        login()
+            .then(function() {
+                return getUserFeed();
+            })
+            .then(function(data) {
+                $scope.feed = data;
+                initializeInfiniteScroll();
+                console.log(data);
+            }).catch(console.log.bind(console));
+    }
+
+    $scope.start();
 }]);

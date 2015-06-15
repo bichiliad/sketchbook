@@ -296,7 +296,7 @@ progress[aria-valuenow]:before  {
     }
 
     .track-column.artwork img {
-        margin: -50px 0;
+        /*margin: -50px 0;*/
     }
 
     .track {
@@ -308,7 +308,7 @@ progress[aria-valuenow]:before  {
     }
 }
 
-@media (max-width: 750px) {    
+@media (max-width: 750px) {
     .track-info h5 {
         font-size: 1.8rem;
     }
