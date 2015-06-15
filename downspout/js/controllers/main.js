@@ -110,7 +110,7 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
         })
         .then(function(data) {
             $scope.feed = data;
-            // initializeInfiniteScroll();
+            initializeInfiniteScroll();
             console.log(data);
         }).catch(console.log.bind(console));
 }]);
