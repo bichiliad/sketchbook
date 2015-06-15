@@ -30,6 +30,5 @@
   },
   "_source": "git://github.com/jxnblk/plangular.git",
   "_target": "~3.1.0",
-  "_originalSource": "plangular",
-  "_direct": true
+  "_originalSource": "plangular"
 }
