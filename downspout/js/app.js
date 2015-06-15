@@ -12,4 +12,23 @@ angular.module('downspout', ['plangular', 'ngAnimate', 'ui.unique'])
                 });
             }
         };
+    })
+    .directive('whenScrolled', function() {
+        console.log('whenScrolled');
+        var link = function(scope, elm, attr) {
+            console.log(elm);
+            console.log('attr', attr);
+            var raw = elm[0];
+            console.log('elm.bind', elm.bind);
+            elm.bind('scroll', function() {
+                console.log('are we at the bottom?');
+                if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+                    scope.$apply(attr.whenScrolled);
+                }
+            });
+        };
+
+        return {
+            link: link
+        }
     });

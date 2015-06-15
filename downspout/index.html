@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <title>Downspout</title>
 
+    <!-- Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- Styles -->
     <link rel="stylesheet" href="css/vendor/skeleton/normalize.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/vendor/skeleton/skeleton.css" media="screen" title="no title" charset="utf-8">
@@ -11,6 +14,7 @@
     <link rel="stylesheet" href="css/vendor/progress-polyfill.css" media="screen" title="no title" charset="utf-8">
 
     <!-- Scripts -->
+    <script src="bower_components/lodash/lodash.min.js" charset="utf-8"></script>
     <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
     <script src="js/vendor/soundcloud.js"></script>
     <script src="js/vendor/progress-polyfill.min.js"></script>
@@ -19,7 +23,7 @@
     <script src="bower_components/angular-ui-utils/unique.min.js"></script>
 
   </head>
-  <body ng-controller="MainController">
+  <body ng-controller="MainController" when-scrolled="more()">
     <h1>Downspout</h1>
 
     <div class="tracks">
@@ -70,7 +74,14 @@
         </div>
     </div>
 
-    <h1 ng-click="more()">More?</h1>
+    <!-- <h1 ng-click="more()">Loading</h1> -->
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
 
     <!-- The app -->
     <script src="js/app.js" charset="utf-8"></script>
