@@ -2,12 +2,24 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
     var host = 'http://salem.io/sketchbook/downspout',
         infiniteScrollRange = 400;
 
-    $scope.loggedIn = false;
-    $scope.promptLogIn = false;
-    $scope.filters = {
+    $scope.loggedIn = false; // Is the user currently logged in?
+    $scope.promptLogIn = false; // Should we show the login view?
+    $scope.filters = { // How should we filter the stream?
         mixes: true,
         downloadOnly: true
     }
+
+    /*
+     * Look for changes in any of the filters
+     */
+    $scope.$watch('filters', function() {
+        console.log('triggering check');
+        setTimeout(function() { // Wait for animations to finish
+            if (window.pageYOffset + window.innerHeight >= document.body.clientHeight - infiniteScrollRange) {
+                $scope.more();
+            }
+        }, 600);
+    }, true);
 
 
     /*
@@ -31,9 +43,6 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
 
         $scope.loggedIn = !!token;
         $scope.promptLogIn = !token;
-
-        console.log('loggedIn', $scope.loggedIn);
-        console.log('promtLogIn', $scope.promtLogIn);
 
         return !!token;
     };
