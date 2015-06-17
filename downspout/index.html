@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="downspout">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Downspout</title>
 
@@ -19,72 +20,117 @@
     <script src="js/vendor/soundcloud.js"></script>
     <script src="js/vendor/progress-polyfill.min.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/moment/min/moment.min.js"></script>
     <script src="bower_components/plangular/dist/plangular.min.js"></script>
     <script src="bower_components/angular-ui-utils/unique.min.js"></script>
 
-  </head>
-  <body ng-controller="MainController" when-scrolled="more()">
+</head>
+
+<body ng-controller="MainController" when-scrolled="more()">
     <h1>Downspout</h1>
 
-    <div class="tracks">
-        <div class="track"
-                ng-repeat="feedItem in feed.collection | filter: {origin: {downloadable: true}} | unique:'origin.permalink_url'"
-                plangular="{{feedItem.origin.permalink_url}}">
-            <div class="track-body row" ng-if="track">
+    <div class="login" ng-if="promptLogIn">
+        <h5 ng-click="start()">Connect with Soundcloud</h5>
+    </div>
 
-                <div class="track-column artwork">
-                    <img class="artwork" ng-src="{{ getLargerAlbumArt(track.artwork_url || track.user.avatar_url) }}" alt="{{ track.title }}"/>
-                    <!-- <div class="artwork-details">Copy artwork url</div> -->
-                </div>
-                <div class="track-column info">
-                    <div class="track-menu">
-                        <a class="menu-item" ng-href="{{track.permalink_url}}" target="_blank" title="Permalink">
-                            <svg class="js-geomicon geomicon" data-icon="link" viewBox="0 0 32 32" style="fill:currentcolor"><title>link icon</title><path d="M0 16 A8 8 0 0 1 8 8 L14 8 A8 8 0 0 1 22 16 L18 16 A4 4 0 0 0 14 12 L8 12 A4 4 0 0 0 4 16 A4 4 0 0 0 8 20 L10 24 L8 24 A8 8 0 0 1 0 16z M22 8 L24 8 A8 8 0 0 1 32 16 A8 8 0 0 1 24 24 L18 24 A8 8 0 0 1 10 16 L14 16 A4 4 0 0 0 18 20 L24 20 A4 4 0 0 0 28 16 A4 4 0 0 0 24 12z"></path></svg>
-                        </a>
-                        <a class="menu-item" ng-href="{{track.permalink_url}}/download" download title="Download">
-                            <svg class="js-geomicon geomicon" data-icon="chevronDown" viewBox="0 0 32 32" style="fill:currentcolor"><title>chevronDown icon</title><path d="M1 12 L16 26 L31 12 L27 8 L16 18 L5 8 z"></path></svg>
-                        </a>
+    <!-- Filter controls -->
+    <div class="tracks controls" ng-if="loggedIn">
+        <div class="left">
+            <input type="checkbox" id="mixes" ng-model="filters.mixes">
+            <label for="mixes">
+                <span class="ui"></span>
+                <span class="label-text">Show mixes?</span>
+            </label>
+        </div>
+        <div class="right">
+            <span ng-click="logout()">Logout</span>
+        </div>
+
+
+    </div>
+
+    <!-- Track list -->
+    <div class="tracks" ng-if="loggedIn">
+        <div class="track-wrapper" ng-repeat="feedItem in feed.collection | unique:'origin.permalink_url'" ng-controller="TrackController" plangular="{{feedItem.origin.permalink_url}}" ng-show="feedItem.show">
+
+            <div class="track" ng-class="{hide: !downloadUrl(track)}">
+                <div class="track-body row">
+                    <div class="track-column artwork">
+                        <img class="artwork" ng-src="{{ getLargerAlbumArt(track.artwork_url || track.user.avatar_url) }}" alt="{{ track.title }}" imageonload="feedItem.show = true" />
+                        <!-- <div class="artwork-details">Copy artwork url</div> -->
                     </div>
-
-                    <div class="track-info">
-                        <h6><a ng-href="{{track.user.permalink_url}}" target="_blank">{{track.user.username}}</a></h6>
-                        <h5><a ng-href="{{track.permalink_url}}" target="_blank">{{track.title}}</a></h5>
-                    </div>
-
-                    <div class="track-controls">
-                        <small class="time">{{ currentTime | hhmmss }} | {{ (duration || track.duration/1000) | hhmmss }}</small>
-                        <div class="play control" ng-click="play()" ng-show="player.playing !== track.src">
-                            <svg class="js-geomicon geomicon" data-icon="play" viewBox="0 0 32 32" style="fill:currentcolor"><title>play icon</title><path d="M4 4 L28 16 L4 28 z"></path></svg>
-                          </div>
-                        <div class="pause control" ng-click="pause()" ng-show="player.playing === track.src">
-                            <svg class="js-geomicon geomicon" data-icon="pause" viewBox="0 0 32 32" style="fill:currentcolor"><title>pause icon</title><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z"></path></svg>
+                    <div class="track-column info">
+                        <div class="track-menu">
+                            <a class="menu-item permalink" ng-href="{{track.permalink_url}}" target="_blank" title="Permalink">
+                                <svg class="js-geomicon geomicon" data-icon="link" viewBox="0 0 32 32" style="fill:currentcolor">
+                                    <title>link icon</title>
+                                    <path d="M0 16 A8 8 0 0 1 8 8 L14 8 A8 8 0 0 1 22 16 L18 16 A4 4 0 0 0 14 12 L8 12 A4 4 0 0 0 4 16 A4 4 0 0 0 8 20 L10 24 L8 24 A8 8 0 0 1 0 16z M22 8 L24 8 A8 8 0 0 1 32 16 A8 8 0 0 1 24 24 L18 24 A8 8 0 0 1 10 16 L14 16 A4 4 0 0 0 18 20 L24 20 A4 4 0 0 0 28 16 A4 4 0 0 0 24 12z"></path>
+                                </svg>
+                            </a>
+                            <a ng-if="track.downloadable" class="menu-item download" ng-href="{{downloadUrl()}}" download={{track.title}} title="Download">
+                                <svg class="js-geomicon geomicon" data-icon="chevronDown" viewBox="0 0 32 32" style="fill:currentcolor">
+                                    <title>chevronDown icon</title>
+                                    <path d="M1 12 L16 26 L31 12 L27 8 L16 18 L5 8 z"></path>
+                                </svg>
+                            </a>
+                            <a ng-if="!track.downloadable" class="menu-item external" ng-href="{{downloadUrl()}}" title="Download from another site" target="_blank">
+                                <svg class="js-geomicon geomicon" data-icon="chevronDown" viewBox="0 0 32 32" style="fill:currentcolor">
+                                    <title>chevronDown icon</title>
+                                    <path d="M1 12 L16 26 L31 12 L27 8 L16 18 L5 8 z"></path>
+                                </svg>
+                            </a>
                         </div>
 
-                        <progress
-                                ng-click="play(); seek($event)"
-                                ng-value="currentTime / duration">
-                            {{ currentTime / duration }}
-                        </progress>
+                        <div class="track-info">
+                            <h6>
+                                <a ng-href="{{track.user.permalink_url}}" target="_blank">{{track.user.username}}</a>,
+                                <a ng-href="{{track.permalink_url}}" target="_blank">
+                                    <small>{{timestamp(track.created_at)}}</small>
+                                </a>
+                            </h6>
+                            <h5><a ng-href="{{track.permalink_url}}" target="_blank">{{track.title}}</a></h5>
+                        </div>
 
+                        <div class="track-controls">
+                            <small class="time">{{ currentTime | hhmmss }} | {{ (duration || track.duration/1000) | hhmmss }}</small>
+                            <div class="play control" ng-click="play()" ng-show="player.playing !== track.src">
+                                <svg class="js-geomicon geomicon" data-icon="play" viewBox="0 0 32 32" style="fill:currentcolor">
+                                    <title>play icon</title>
+                                    <path d="M4 4 L28 16 L4 28 z"></path>
+                                </svg>
+                            </div>
+                            <div class="pause control" ng-click="pause()" ng-show="player.playing === track.src">
+                                <svg class="js-geomicon geomicon" data-icon="pause" viewBox="0 0 32 32" style="fill:currentcolor">
+                                    <title>pause icon</title>
+                                    <path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z"></path>
+                                </svg>
+                            </div>
+
+                            <progress ng-click="play(); seek($event)" ng-value="currentTime / duration">
+                                {{ currentTime / duration }}
+                            </progress>
+
+                        </div>
                     </div>
                 </div>
-
-
             </div>
+        </div>
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
         </div>
     </div>
 
     <!-- <h1 ng-click="more()">Loading</h1> -->
-    <div class="spinner">
-        <div class="rect1"></div>
-        <div class="rect2"></div>
-        <div class="rect3"></div>
-        <div class="rect4"></div>
-        <div class="rect5"></div>
-    </div>
+
 
     <!-- The app -->
     <script src="js/app.js" charset="utf-8"></script>
     <script src="js/controllers/main.js" charset="utf-8"></script>
-  </body>
+    <script src="js/controllers/track.js" charset="utf-8"></script>
+</body>
+
 </html>
