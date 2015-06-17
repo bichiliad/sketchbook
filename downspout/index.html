@@ -8,9 +8,9 @@
     <!-- Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="Downspout" />
-    <meta property="og:site_name" content="Downspout"/>
+    <meta property="og:site_name" content="Downspout" />
     <meta property="og:type"   content="website" />
-    <meta property="og:url"    content="http://salem.io/sketchbook/downspout" />
+    <meta property="og:url"    content="http://salem.io/sketchbook/downspout/" />
     <meta property="og:image"  content="https://salem.io/sketchbook/downspout/img/og-image.png" />
 
     <!-- Styles -->
@@ -56,7 +56,7 @@
     </div>
 
     <!-- Track list -->
-    <div class="tracks" ng-if="loggedIn">
+    <div class="tracks" ng-if="loggedIn" ng-cloak>
         <div class="track-wrapper" ng-repeat="feedItem in feed.collection | unique:'origin.permalink_url'" ng-controller="TrackController" plangular="{{feedItem.origin.permalink_url}}" ng-show="feedItem.show">
 
             <div class="track" ng-class="{hide: !showTrack(track)}">
