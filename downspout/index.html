@@ -30,7 +30,8 @@
     <h1>Downspout</h1>
 
     <div class="login" ng-if="promptLogIn">
-        <h5 ng-click="start()">Connect with Soundcloud</h5>
+        <h5>All the free music from your Soundcloud stream.</h5>
+        <h5 class="login-button" ng-click="start()">Connect with Soundcloud</h5>
     </div>
 
     <!-- Filter controls -->
@@ -53,10 +54,10 @@
     <div class="tracks" ng-if="loggedIn">
         <div class="track-wrapper" ng-repeat="feedItem in feed.collection | unique:'origin.permalink_url'" ng-controller="TrackController" plangular="{{feedItem.origin.permalink_url}}" ng-show="feedItem.show">
 
-            <div class="track" ng-class="{hide: !downloadUrl(track)}">
+            <div class="track" ng-class="{hide: !showTrack(track)}">
                 <div class="track-body row">
                     <div class="track-column artwork">
-                        <img class="artwork" ng-src="{{ getLargerAlbumArt(track.artwork_url || track.user.avatar_url) }}" alt="{{ track.title }}" imageonload="feedItem.show = true" />
+                        <img ng-if="track" class="artwork" ng-src="{{ getLargerAlbumArt() }}" alt="{{ track.title }}" imageonload="feedItem.show = true" />
                         <!-- <div class="artwork-details">Copy artwork url</div> -->
                     </div>
                     <div class="track-column info">
