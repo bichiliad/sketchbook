@@ -349,6 +349,12 @@ progress[aria-valuenow]:before  {
 
     .track {
         margin-bottom: 20px;
+        height: auto;
+    }
+
+    .track-body  {
+        height: auto;
+        position: relative;
     }
 
     .tracks {
