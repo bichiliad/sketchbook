@@ -5,7 +5,7 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
     $scope.loggedIn = false;
     $scope.promptLogIn = false;
     $scope.filters = {
-        mixes: false,
+        mixes: true,
         downloadOnly: true
     }
 
