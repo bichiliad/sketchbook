@@ -26,6 +26,19 @@ iframe {
     width: 100%;
 }
 
+.logo {
+    -webkit-transition: font-size .5s, margin .5s;
+}
+
+.logo.hero {
+    font-size: 4em;
+    margin: 2em 0 1.5em;
+}
+
+.login h4 {
+    margin-bottom: 1.5em;
+}
+
 .login {
     color: white;
     margin: 0 auto;
@@ -40,6 +53,11 @@ iframe {
     max-width:325px;
     width: 90%;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.login h5.login-button:active {
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .tracks {
@@ -51,6 +69,12 @@ iframe {
 
 .tracks.controls {
     margin-bottom: 30px;
+    color: white;
+    font-weight: 500;
+}
+
+.tracks.controls .logout {
+    cursor: pointer;
 }
 
 .tracks.controls .right {
