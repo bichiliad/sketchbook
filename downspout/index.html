@@ -69,7 +69,7 @@
 <body ng-controller="MainController" when-scrolled="more()">
     <h1 class="logo" ng-class="{hero: promptLogIn}">Downspout</h1>
 
-    <div class="login" ng-if="promptLogIn">
+    <div class="login" ng-if="promptLogIn" ng-cloak>
         <h4>All the free music from your SoundCloud stream.</h5>
         <h5 class="login-button" ng-click="start()">Connect with SoundCloud</h5>
     </div>
@@ -80,7 +80,10 @@
             <input type="checkbox" id="mixes" ng-model="filters.mixes">
             <label for="mixes">
                 <span class="ui"></span>
-                <span class="label-text">Show mixes?</span>
+                <span class="label-text tooltip">
+                    Show mixes?
+                    <span class="tooltip-body">Use this to filter out DJ mixes and sets longer than 12 minutes.</span>
+                </span>
             </label>
         </div>
         <div class="right">
@@ -99,6 +102,9 @@
                     <div class="track-column artwork">
                         <img ng-if="track" class="artwork" ng-src="{{ getLargerAlbumArt() }}" alt="{{ track.title }}" imageonload="feedItem.show = true" />
                         <!-- <div class="artwork-details">Copy artwork url</div> -->
+                        <div class="soundcloud-attribution">
+                            SoundCloud
+                        </div>
                     </div>
                     <div class="track-column info">
                         <div class="track-menu">
