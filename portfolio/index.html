@@ -39,7 +39,7 @@
             z-index: 1;
             position: relative;
             font-size: 84px;
-            color: #f95020;
+            color: #f17f81;
             margin-top: calc(50% - 114px / 2);
             background-color: white;
             padding: 15px;
@@ -56,6 +56,15 @@
 
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script>
+        /*var $img = $("#masthead img");
+        $(window).scroll(function() {
+            var top = $(this).scrollTop();
+            if (top <= 650) {
+                var offset = (top / 650) * 50 - 50;
+                $img.css('top', offset + 'px');
+            }
+        }); */
+
         var $mastheadImg = document.getElementById('masthead-img');
         var parallaxImg = function(element) {
             window.addEventListener('scroll', function() {
