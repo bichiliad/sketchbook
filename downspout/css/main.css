@@ -172,6 +172,17 @@ iframe {
     text-decoration: underline;
 }
 
+.soundcloud-attribution {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.6em;
+    letter-spacing: .1em;
+    padding: 0 3px;
+}
+
 
  /* Player */
 .control {
@@ -406,6 +417,48 @@ progress[aria-valuenow]:before  {
 
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {}
+
+
+/* Tooltips */
+.tooltip-body {
+    position: absolute;
+    width: 160px;
+    background-color: #111;
+    text-align: center;
+    padding: 10px;
+    border-radius: 2px;
+    top: 40px;
+    left: 50%;
+    margin-left: -78px;
+    z-index: 1000;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    font-weight: normal;
+    font-size: .9em;
+}
+
+.tooltip-body:before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -8px;
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid #111;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip:hover .tooltip-body {
+    visibility: visible;
+    opacity: 0.89;
+}
 
 
 
