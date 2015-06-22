@@ -22,7 +22,7 @@ angular.module('downspout').controller('TrackController', ['$scope', function($s
      * TODO: Get rid of time argument
      */
     $scope.timestamp = function(time) {
-        return moment(new Date('2015/06/16 12:56:33 +0000')).fromNow();
+        return moment(new Date(time)).fromNow();
     }
 
     /*
@@ -58,6 +58,11 @@ angular.module('downspout').controller('TrackController', ['$scope', function($s
 
         // Is it ready?
         if (!$scope.track) {
+            return false;
+        }
+
+        // Is it even streamable?
+        if (!$scope.track.streamable || $scope.track.sharing !== "public") {
             return false;
         }
 

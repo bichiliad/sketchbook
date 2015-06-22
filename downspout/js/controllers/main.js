@@ -13,7 +13,6 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
      * Look for changes in any of the filters
      */
     $scope.$watch('filters', function() {
-        console.log('triggering check');
         setTimeout(function() { // Wait for animations to finish
             if (window.pageYOffset + window.innerHeight >= document.body.clientHeight - infiniteScrollRange) {
                 $scope.more();
@@ -94,6 +93,7 @@ angular.module('downspout').controller('MainController', ['$scope', '$q', '$sce'
                 if (error) {
                     reject(error);
                 } else {
+                    console.log('feed', data);
                     resolve(data);
                 }
             });

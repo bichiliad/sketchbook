@@ -92,7 +92,7 @@
 
     <!-- Track list -->
     <div class="tracks" ng-if="loggedIn" ng-cloak>
-        <div class="track-wrapper" ng-repeat="feedItem in feed.collection | unique:'origin.permalink_url'" ng-controller="TrackController" plangular="{{feedItem.origin.permalink_url}}" ng-show="feedItem.show">
+        <div class="track-wrapper" ng-repeat="feedItem in feed.collection | unique:'origin.permalink_url' | filter:{origin:{streamable: true, sharing: 'public'}}" ng-controller="TrackController" plangular="{{feedItem.origin.permalink_url}}" ng-show="feedItem.show">
 
             <div class="track" ng-class="{hide: !showTrack(track)}">
                 <div class="track-body row">
@@ -126,7 +126,9 @@
                             <h6>
                                 <a ng-href="{{track.user.permalink_url}}" target="_blank">{{track.user.username}}</a>,
                                 <a ng-href="{{track.permalink_url}}" target="_blank">
-                                    <small>{{timestamp(track.created_at)}}</small>
+                                    <small>{{timestamp(feedItem.created_at)}}
+                                        <span ng-if="feedItem.type == 'track-repost'">, originally posted {{timestamp(track.created_at)}}</span>
+                                    </small>
                                 </a>
                             </h6>
                             <h5><a ng-href="{{track.permalink_url}}" target="_blank">{{track.title}}</a></h5>
