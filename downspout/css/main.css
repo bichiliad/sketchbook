@@ -94,6 +94,8 @@ iframe {
     -webkit-transition: height 0.5s, margin 0.5s;
     transition: height 0.5s, margin 0.5s;
     border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
 .track.hide {
