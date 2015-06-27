@@ -1,6 +1,62 @@
 angular.module('downspout').controller('TrackController', ['$scope', function($scope) {
     var mixLength = 12; // minutes
 
+    $scope.liked = false;
+    $scope.follow = false;
+
+    /* Deterimine if the track is liked / followed */
+    var getLikeAndFollow = function() {
+        // We shouldn't hit here, but just in case, let's catch it
+        if (!$scope.feedItem.origin) {
+            console.log('no track');
+            return;
+        }
+
+        console.log('some track');
+        SC.get("/me/favorites/" + $scope.feedItem.origin.id, function(data, error) {
+            // console.log(data);
+
+            if (error) {
+                if (error.message.indexOf('404') === -1) {
+                    console.error(error);
+                }
+            } else if (!data.errors) {
+                $scope.$apply(function() {
+                    $scope.liked = true;
+                });
+            }
+
+        });
+        // track.id
+        // track.user_id
+    }
+
+
+    $scope.toggleLike = function() {
+        if ($scope.liked) {
+            SC.delete("/me/favorites/" + $scope.feedItem.origin.id, function(data, error) {
+                if (error) {
+                    console.error("Error unliking" + $scope.feedItem.origin.id, error);
+                    return;
+                }
+                $scope.$apply(function() {
+                    $scope.liked = false;
+                });
+
+            });
+        } else {
+            SC.put("/me/favorites/" + $scope.feedItem.origin.id, function(data, error) {
+                if (error) {
+                    console.error("Error liking" + $scope.feedItem.origin.id, error);
+                    return;
+                }
+                $scope.$apply(function() {
+                    $scope.liked = true;
+                });
+            });
+        }
+    }
+
     /*
      * Given an artwork URL, spits out the url for the full sized image
      */
@@ -9,6 +65,7 @@ angular.module('downspout').controller('TrackController', ['$scope', function($s
         if (!$scope.track) {
             return '';
         }
+
         var url = $scope.track.artwork_url || $scope.track.user.avatar_url;
         if (!url) {
             // TODO: Need better default image.
@@ -79,5 +136,8 @@ angular.module('downspout').controller('TrackController', ['$scope', function($s
 
         return true;
     }
+
+
+    getLikeAndFollow();
 
 }]);
