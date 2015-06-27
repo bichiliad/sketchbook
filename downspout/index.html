@@ -46,7 +46,7 @@
     <!-- Scripts -->
     <script src="bower_components/lodash/lodash.min.js" charset="utf-8"></script>
     <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
-    <script src="js/vendor/soundcloud.js"></script>
+    <script src="//connect.soundcloud.com/sdk-2.0.0.js"></script>
     <script src="js/vendor/progress-polyfill.min.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/moment/min/moment.min.js"></script>
@@ -54,7 +54,6 @@
     <script src="bower_components/angular-ui-utils/unique.min.js"></script>
 
     <!-- Analytics -->
-
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -101,7 +100,10 @@
                 <div class="track-body row">
                     <div class="track-column artwork">
                         <img ng-if="track" class="artwork" ng-src="{{ getLargerAlbumArt() }}" alt="{{ track.title }}" imageonload="feedItem.show = true" />
-                        <!-- <div class="artwork-details">Copy artwork url</div> -->
+                        <div class="artwork-details">
+                            <div class="like" ng-click="toggleLike()" ng-class="{active: liked}">Like<span ng-if="liked == true">d</span></div>
+                            <div class="follow">Follow</div>
+                        </div>
                         <div class="soundcloud-attribution">
                             SoundCloud
                         </div>
@@ -132,7 +134,9 @@
                             <h6>
                                 <a ng-href="{{track.user.permalink_url}}" target="_blank">{{track.user.username}}</a>,
                                 <a ng-href="{{track.permalink_url}}" target="_blank">
-                                    <small>{{timestamp(feedItem.created_at)}}
+                                    <small>
+                                        <span ng-if="feedItem.type == 'track-repost'">re</span>posted
+                                        {{timestamp(feedItem.created_at)}}
                                         <span ng-if="feedItem.type == 'track-repost'">, originally posted {{timestamp(track.created_at)}}</span>
                                     </small>
                                 </a>
