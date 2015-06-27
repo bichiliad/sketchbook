@@ -36,7 +36,7 @@ angular.module('downspout').controller('TrackController', ['$scope', function($s
         if ($scope.liked) {
             SC.delete("/me/favorites/" + $scope.feedItem.origin.id, function(data, error) {
                 if (error) {
-                    console.error("Error unliking" + $scope.feedItem.origin.id, error);
+                    console.error("Error unliking " + $scope.feedItem.origin.id + ":", error);
                     return;
                 }
                 $scope.$apply(function() {
@@ -47,7 +47,7 @@ angular.module('downspout').controller('TrackController', ['$scope', function($s
         } else {
             SC.put("/me/favorites/" + $scope.feedItem.origin.id, function(data, error) {
                 if (error) {
-                    console.error("Error liking" + $scope.feedItem.origin.id, error);
+                    console.error("Error liking " + $scope.feedItem.origin.id + ":", error);
                     return;
                 }
                 $scope.$apply(function() {
