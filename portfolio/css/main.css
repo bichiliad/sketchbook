@@ -1,35 +1,78 @@
-html {
-    height: 100%;
+html, body {
+    min-height: 100%;
 }
+
 body {
-    min-height: 200vh;
+    background-color: #E3454D;
+    background-image: linear-gradient(#D45A54, #E3454D);
 }
-#masthead img {
-    top: -50px;
-    left: 0;
-    position: absolute;
-    opacity: 0.7;
-    width: 100%;
+
+a, a:visited {
+    color: inherit;
+    transition: color 0.2s;
+    -webkit-transition: color 0.2s;
 }
-#masthead {
-    background-color: black;
-    text-align: center;
-    margin: calc((100vh - 600px) / 2) auto;
-    overflow: hidden;
-    width: 600px;
-    position: relative;
-    height: 600px;
-    background-position: center;
-    z-index: 0;
+
+a:hover {
+    color: #E3454D;
 }
-#masthead h1 {
-    display: inline-block;
-    z-index: 1;
-    position: relative;
-    font-size: 84px;
-    color: #f17f81;
-    margin-top: calc(50% - 114px / 2);
+
+
+#content {
+    color: #333;
     background-color: white;
-    padding: 15px;
-    font-weight: 800;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    font-size: 54px;
+    font-weight: bold;
+    line-height: 2em;
+    text-align: justify;
+    white-space: nowrap;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    margin-bottom: 20px;
+    min-height: calc(100vh - 20px)
+}
+
+#social {
+    margin-top: 40px;
+}
+
+#social div{
+    float: left;
+    width: 15%;
+    margin-right: 10%;
+    max-width: 50px;
+}
+
+#social a {
+    color: inherit;
+    transition: color .2s;
+    -webkit-transition: color .2s;
+}
+
+#social a:hover {
+    color: #f17f81;
+}
+
+
+
+/* Utilities */
+
+.container {
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.fade-in {
+    opacity: 0;
+}
+
+
+@media (max-width: 667px) {
+.container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }

@@ -1,35 +1,40 @@
-/*
- * @flow
- */
+var timeout = -1;
+var resizeFont = function() {
+    clearTimeout(timeout);
+    timeout = setTimeout(function() {
+        var $content = $('#content'),
+            target = $(window).width(),
+            current = $('.measure').width(),
+            fontSize = parseInt($content.css('font-size'));
 
+        if (current > target * .85) {
+            while (current > target * .85) {
+                fontSize--;
+                $content.css('font-size', fontSize + 'px');
+                current = $('.measure').width();
+            }
+        } else if (current < target * .75) {
+            while (current < target * .75) {
+                fontSize++;
+                $content.css('font-size', fontSize + 'px');
+                current = $('.measure').width();
+                console.log('unmeasure', current);
+            }
+        }
+    }, 100);
 
-/* Takes an element, returns its distance from the top of the page */
-function offset(elem) {
-  var x = 0;
-  while (elem) {
-    x += elem.offsetTop;
-    elem = elem.offsetParent;
-  }
-  return x;
 }
 
-/* Adds a paralax effect to an image element */
-var parallaxImg = function(element) {
-  window.addEventListener('scroll', function() {
-    var top = window.scrollY;
-    if (top <= 650) {
-      var offset = (top / 650) * 50 - 50;
-      element.style.top = offset + 'px';
-    }
-  });
-};
 
+$(window).ready(function() {
 
-$(document).ready(function() {
+    resizeFont();
+    setTimeout(function() {
+        $('.fade-in').animate({
+            'opacity': 1
+        }, 200);
+    }, 300);
 
+    $(window).resize(resizeFont);
 
-  var images = [
-    document.getElementById('masthead-img'),
-  ];
-  images.map(parallaxImg);
 });
