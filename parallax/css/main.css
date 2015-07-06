@@ -1,0 +1,35 @@
+html {
+    height: 100%;
+}
+body {
+    min-height: 200vh;
+}
+#masthead img {
+    top: -50px;
+    left: 0;
+    position: absolute;
+    opacity: 0.7;
+    width: 100%;
+}
+#masthead {
+    background-color: black;
+    text-align: center;
+    margin: calc((100vh - 600px) / 2) auto;
+    overflow: hidden;
+    width: 600px;
+    position: relative;
+    height: 600px;
+    background-position: center;
+    z-index: 0;
+}
+#masthead h1 {
+    display: inline-block;
+    z-index: 1;
+    position: relative;
+    font-size: 84px;
+    color: #f17f81;
+    margin-top: calc(50% - 114px / 2);
+    background-color: white;
+    padding: 15px;
+    font-weight: 800;
+}

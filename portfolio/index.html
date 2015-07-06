@@ -1,30 +1,58 @@
 <!doctype html>
 <head>
     <title>Salem.io</title>
+
+    <!-- Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Styles -->
     <link rel="stylesheet" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
     <link rel="stylesheet" href="css/main.css">
+
+    <!-- Fonts -->
     <script src="http://use.typekit.net/hny2kmy.js"></script>
     <script>try{Typekit.load();}catch(e){}</script>
 
 </head>
 <body>
-<!-- <img id="placeholder" src="img/bw.jpg"-->
-    <div id="masthead">
-        <img id="masthead-img" src="img/bw-tl.jpg" alt="Hey now, did you disable images?">
-        <h1 class="tk-letter-gothic-std">Hello</h1>
+
+    <!-- My name is Salem -->
+    <div id="hello" class="container resize-me bold white-bg">
+        <div class="fade-in">
+            My name is Salem.<br class="desktop">
+            <span class="measure">I'm a full-stack developer with an</span><br class="desktop">
+            interest in user experience.<br>
+            <br>
+            <span class="measure-mobile">See my code on <a href="https://github.com/bichiliad">Github</a></span><br>
+            or <a href="https://twitter.com/technoheads">tweet at me</a>.
+        </div>
     </div>
+    <div class="divider"></div>
+
+    <!-- And I made this -->
+    <div id="work" class="container">
+        <h1 class="resize-me bold">Things I've worked on.</h1>
+    </div>
+
+    <div id="work-tiles" class="container">
+        <div class="work-tiles-wrapper">
+            <div class="work-tile">
+                <img src="img/downspout2.png" alt="Downspout">
+                <div class="description">All the free music from your SoundCloud feed in one place.</div>
+            </div>
+            <div class="work-tile">
+                <img src="img/tnr2.png" alt="Downspout">
+                <div class="description">A music blog focused on techno, house, and future sound.</div>
+            </div>
+            <div class="work-tile">
+                <img src="img/jsfmt.png" alt="Downspout">
+                <div class="description">A plugin to integrate jsfmt with the Atom editor.</div>
+            </div>
+        </div>
+    </div>
+
+
 
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-    <script>
-        /*var $img = $("#masthead img");
-        $(window).scroll(function() {
-            var top = $(this).scrollTop();
-            if (top <= 650) {
-                var offset = (top / 650) * 50 - 50;
-                $img.css('top', offset + 'px');
-            }
-        }); */
-
-    </script>
 </body>
