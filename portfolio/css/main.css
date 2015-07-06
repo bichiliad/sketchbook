@@ -221,8 +221,8 @@ a:hover {
     }
 
     #hello.done {
-        min-height: calc(100vh - 60px);
-        padding-bottom: 120px;
+        min-height: calc(100vh - 90px);
+        padding-bottom: 30px;
     }
 
     .divider {
