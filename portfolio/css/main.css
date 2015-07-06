@@ -47,7 +47,7 @@ a:hover {
 
 #hello.done {
     min-height: calc(100vh - 30px);
-    /* margin-bottom: 50px; */
+    /* To take the place of the animation */
     padding-bottom: 60px;
 }
 
@@ -218,5 +218,18 @@ a:hover {
 
     #hello {
         white-space: inherit;
+    }
+
+    #hello.done {
+        min-height: calc(100vh - 60px);
+        padding-bottom: 120px;
+    }
+
+    .divider {
+        height: 120px;
+    }
+
+    .measure-mobile {
+        white-space: nowrap;
     }
 }

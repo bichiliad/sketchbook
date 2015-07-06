@@ -11,31 +11,34 @@ var throttle = function(fn, throttle) {
 // Resize the font to fit the screen.
 var resizeFont = function() {
     var $content = $('.resize-me'),
-        $measure = $content.find('.measure');
+        $measure;
 
     var target = $('.container').first().width(),
-        current = $measure.width(),
+        current,
         fontSize = parseInt($content.css('font-size'));
 
-    // Don't do anything for mobile.
+    // Initialize
     if (target < 667) {
-        $content.css('font-size', 'inherit');
-        return;
+        $measure = $('.measure-mobile');
+    } else {
+        $measure = $('.measure');
     }
+    current = $measure.width();
 
-    if (current > target * .85) {
-        while (current > target * .85) {
+    if (current > target * .95) {
+        while (current > target * .95) {
             fontSize--;
             $content.css('font-size', fontSize + 'px');
             current = $measure.width();
         }
-    } else if (current < target * .75) {
-        while (current < target * .75) {
+    } else if (current < target * .90) {
+        while (current < target * .90) {
             fontSize++;
             $content.css('font-size', fontSize + 'px');
             current = $measure.width();
         }
     }
+
 };
 
 
